@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="uz" data-power="off">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Mahmud Ulashev — Mahsulot dizayni</title>
+<meta name="description" content="Mahmud Ulashev — mahsulot dizayneri va dizayn muhandisi. Ishlarni retro konsol orqali koʻring." />
+<meta name="author" content="Mahmud Ulashev" />
+<meta property="og:title" content="Mahmud Ulashev — Mahsulot dizayni" />
+<meta property="og:url" content="https://ulashev.uz" />
+<meta property="og:locale" content="uz_UZ" />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://rfvaiiqbspsivbastyrj.supabase.co" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&text=ulam.&display=swap"
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400&display=swap" rel="stylesheet" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=1787339455" />
+</head>
+<body>
+
+<!-- ambient furniture -->
+<div class="amb amb-tl gb" id="gb" data-state="locked">
+  <div class="amb-title">MEHMONLAR KITOBI</div>
+  <div class="amb-line gb-lead" id="guestbookLine">ochiladi: 1:00</div>
+
+  <div class="gb-open">
+    <button class="gb-btn" id="gbBtn">
+      <span class="gb-btn-ico" aria-hidden="true"></span><span>Devorga muhr bosing</span>
+    </button>
+    <div class="gb-hint" id="gbHint"></div>
+    <div class="gb-count" id="gbCount"></div>
+  </div>
+</div>
+
+<div class="wall" id="wall"><div class="wall-inner" id="wallInner"></div></div>
+
+<div class="gbp" id="gbPanel" hidden>
+  <div class="gbp-grip" aria-hidden="true"></div>
+  <button class="gbp-x" id="gbpClose" aria-label="Yopish">&times;</button>
+
+  <div class="gbp-lab">Ismingiz <i>· bir soʻz</i></div>
+  <input id="gbpName" maxlength="14" placeholder="masalan: Mahmud" autocomplete="off" spellcheck="false" />
+
+  <div class="gbp-lab">Muhr dizayni</div>
+  <div class="gbp-rail" id="gbpRail" role="radiogroup" aria-label="Muhr dizayni"></div>
+
+  <div class="gbp-lab">Siyoh</div>
+  <div class="gbp-inks" id="gbpInks" role="radiogroup" aria-label="Siyoh"></div>
+
+  <div class="gbp-lab">Oʻlcham</div>
+  <div class="gbp-sizes" id="gbpSizes" role="radiogroup" aria-label="Oʻlcham">
+    <button data-size="s" role="radio" aria-checked="false">Kichik</button>
+    <button data-size="m" role="radio" aria-checked="true">Oʻrta</button>
+  </div>
+
+  <button class="gbp-go" id="gbpGo">Muhrni bosing &rarr;</button>
+  <div class="gbp-note" id="gbpNote"></div>
+</div>
+
+<div class="amb amb-bl" id="changelog"></div>
+
+<div class="amb amb-r">
+  <div class="amb-title">KLAVIATURA</div>
+  <ul class="keylegend" id="keylegend"></ul>
+</div>
+
+<div class="stage">
+  <div class="scaler" id="scaler">
+
+    <!-- ================= DEVICE 370 x 648 ================= -->
+    <div class="device" id="device">
+      <div class="ribs"></div>
+      <div class="sheen"></div>
+      <div class="spotlight" aria-hidden="true"></div>
+
+      <!-- header -->
+      <div class="chrome">
+        <span class="brand"><b>ula</b><i></i><b>m</b><u>.</u></span>
+        <span class="ver">V2.1.1</span>
+        <span class="minidots" aria-hidden="true"><s></s><s></s><s></s><s></s><s></s><s></s><s></s></span>
+        <span class="led" id="led"></span>
+      </div>
+
+      <!-- screen -->
+      <div class="bezel">
+        <div class="screen">
+          <div class="topsheen"></div>
+          <div class="scanlines"></div>
+          <div class="vignette"></div>
+
+          <div class="crt" id="crt">
+
+            <!-- OFF -->
+            <section class="view view-off" data-view="off">
+              <div class="off-title">YOQISH UCHUN <kbd>P</kbd></div>
+              <div class="off-sub">YOKI EKRANGA BOSING</div>
+            </section>
+
+            <!-- MENU -->
+            <section class="view view-menu" data-view="menu">
+              <div class="shead">
+                <span class="spath" id="menuPath">/ishlar</span>
+                <span class="scount" id="menuCount">8 ta</span>
+              </div>
+              <nav class="tabs" id="tabs"></nav>
+              <div class="listzone" id="listzone">
+                <div class="hint">ochish uchun qatorni bosing</div>
+                <div class="list" id="list"></div>
+              </div>
+              <div class="prompt">
+                <span class="pcaret">&gt;</span>
+                <input id="cmd" autocomplete="off" spellcheck="false" placeholder="1–8 raqamini yozing" />
+              </div>
+            </section>
+
+            <!-- DETAIL -->
+            <section class="view view-detail" data-view="detail">
+              <div class="shead">
+                <span class="crumb" id="crumb"></span>
+                <span class="scount" id="detNo"># 1</span>
+              </div>
+              <div class="dbody" id="dbody"></div>
+              <div class="dfoot" id="dfoot">ochish uchun <b>↵</b> yoki <b>markaziy tugma</b> <b class="arr">▸</b></div>
+              <div class="pager">
+                <button class="pgbtn" id="pgPrev"><span class="arr">◂</span> oldingi</button>
+                <span class="pgpos" id="pgPos">1 / 8</span>
+                <button class="pgbtn" id="pgNext">keyingi <span class="arr">▸</span></button>
+              </div>
+            </section>
+
+            <!-- CHANNEL PAGE (about / contact) -->
+            <section class="view view-page" data-view="page">
+              <div class="shead">
+                <span class="spath" id="pgPath">/men</span>
+                <span class="scount" id="pgTag"></span>
+              </div>
+              <div class="dbody" id="pageBody"></div>
+              <div class="dfoot dim" id="pgFoot">qaytish uchun <b>esc</b> yoki <b>back</b></div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- controls -->
+      <div class="deck">
+        <button class="power" id="power" aria-label="Quvvat">
+          <span class="hit"></span><span class="lbl">QUVVAT</span>
+        </button>
+
+        <div class="wheelbox">
+          <button class="wheel" id="wheel" aria-label="Gʻildirak — kanalni oʻzgartirish">
+            <span class="ring-brush"></span>
+            <span class="ring-hi"></span>
+            <span class="ring-sh"></span>
+          </button>
+          <button class="knob" id="knob" aria-label="OCHISH"><span class="pearl"></span></button>
+          <button class="dir dir-up"    id="dWork"    aria-label="ISHLAR"></button>
+          <button class="dir dir-left"  id="dWrite"   aria-label="YOZISH"></button>
+          <button class="dir dir-right" id="dAbout"   aria-label="MEN HAQIMDA"></button>
+          <button class="dir dir-down"  id="dContact" aria-label="ALOQA"></button>
+        </div>
+
+        <button class="backbtn" id="backbtn" aria-label="Orqaga">
+          <span class="hit"></span><span class="lbl">ORQAGA</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="copyright">COPYRIGHT 2026 © · MAHMUD ULASHEV</div>
+  </div>
+</div>
+
+<script src="app.js?v=1787339455" defer></script>
+</body>
+</html>
