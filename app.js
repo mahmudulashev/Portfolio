@@ -91,7 +91,7 @@ const PAGES = {
     path: '/men', tag: '',
     html: `
       <div class="d-title">Mahmud Ulashev</div>
-      <div class="d-meta">DASTURCHI · 4 YIL · TOSHKENT</div>
+      <div class="d-meta">DASTURCHI · 4 YIL</div>
       <div class="d-para">Dizayn, interfeys, server va ular orasidagi koʻrinmas ish. Siz bitta odam bilan gaplashasiz — butun natijaga bitta odam javob beradi.</div>
       <div class="d-para">Gʻoya sizdan — ishlaydigan mahsulot mendan.</div>
       <div class="d-sub">RAQAMLARDA</div>
@@ -141,8 +141,8 @@ const CHANGELOG = [
 const LEGENDS = {
   off:    [['P', 'YOQISH'], ['M', 'TOVUSH']],
   menu:   [['↑ ↓', 'TANLASH'], ['← →', 'BOʻLIMLAR'], ['↵', 'OCHISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
-  detail: [['← →', 'OLDINGI / KEYINGI'], ['↑ ↓', 'AYLANTIRISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
-  page:   [['↑ ↓', 'AYLANTIRISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']]
+  detail: [['← →', 'OLDINGI / KEYINGI'], ['↑ ↓', 'SURISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
+  page:   [['↑ ↓', 'SURISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']]
 };
 
 /* ---------- state & dom ------------------------------------- */
@@ -217,7 +217,7 @@ function renderMenu() {
   const d = DATA[S.tab];
   el.menuPath.textContent = '/' + d.label.replace(' ', '-');
   el.menuCount.textContent = `${d.items.length} ta`;
-  el.cmd.placeholder = `1–${d.items.length} raqamini yozing`;
+  el.cmd.placeholder = `raqam yozing: 1–${d.items.length}`;
   document.querySelectorAll('.tab').forEach(b =>
     b.classList.toggle('is-on', b.dataset.tab === S.tab));
   el.list.innerHTML = d.items.map((it, i) => `
