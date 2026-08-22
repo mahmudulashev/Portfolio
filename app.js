@@ -13,33 +13,6 @@ const ICO = {
 const setIcon = (el, name) =>
   el.style.setProperty('--icon', `url("data:image/svg+xml,${encodeURIComponent(ICO[name])}")`);
 
-/* ---------- Supabase (REST directly — no SDK, page stays dependency-free)
-   Fill these in and the guestbook goes live; leave blank and it falls back
-   to this browser's localStorage so the page still works offline.       ---- */
-const SUPABASE = {
-  url: 'https://rfvaiiqbspsivbastyrj.supabase.co',
-  key: 'sb_publishable__caHvbnYFQ-_VVKH1oM4ig_FkySFiS3'
-};
-const sbLive = () => Boolean(SUPABASE.url && SUPABASE.key);
-const sbHeaders = (extra) => Object.assign(
-  { apikey: SUPABASE.key, Authorization: `Bearer ${SUPABASE.key}` }, extra || {});
-
-async function sbList() {
-  const q = '/rest/v1/stamps?select=nickname,message,seal,ink,size,x,y,created_at' +
-            '&approved=is.true&order=created_at.desc&limit=50';
-  const r = await fetch(SUPABASE.url + q, { headers: sbHeaders() });
-  if (!r.ok) throw new Error('list ' + r.status);
-  return r.json();
-}
-async function sbInsert(row) {
-  const r = await fetch(SUPABASE.url + '/rest/v1/stamps', {
-    method: 'POST',
-    headers: sbHeaders({ 'Content-Type': 'application/json', Prefer: 'return=minimal' }),
-    body: JSON.stringify(row)
-  });
-  if (!r.ok) throw new Error('insert ' + r.status);
-}
-
 /* ---------- content (placeholder — swap for your own) -------- */
 
 const DATA = {
@@ -166,10 +139,10 @@ const CHANGELOG = [
 ];
 
 const LEGENDS = {
-  off:    [['P', 'YOQISH']],
-  menu:   [['↑ ↓', 'TANLASH'], ['← →', 'BOʻLIMLAR'], ['↵', 'OCHISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['P', 'OʻCHIRISH']],
-  detail: [['← →', 'OLDINGI / KEYINGI'], ['↑ ↓', 'AYLANTIRISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH']],
-  page:   [['↑ ↓', 'AYLANTIRISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH']]
+  off:    [['P', 'YOQISH'], ['M', 'TOVUSH']],
+  menu:   [['↑ ↓', 'TANLASH'], ['← →', 'BOʻLIMLAR'], ['↵', 'OCHISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
+  detail: [['← →', 'OLDINGI / KEYINGI'], ['↑ ↓', 'AYLANTIRISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
+  page:   [['↑ ↓', 'AYLANTIRISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']]
 };
 
 /* ---------- state & dom ------------------------------------- */
@@ -187,7 +160,7 @@ const el = {
   pgPath: $('#pgPath'), pgTag: $('#pgTag'), pageBody: $('#pageBody'),
   pgFoot: $('#pgFoot'),
   legend: $('#keylegend'), changelog: $('#changelog'),
-  guest: $('#guestbookLine'), scaler: $('#scaler'),
+  scaler: $('#scaler'),
   power: $('#power'), back: $('#backbtn'), knob: $('#knob'), wheel: $('#wheel')
 };
 const dirs = { work: $('#dWork'), write: $('#dWrite'), about: $('#dAbout'), contact: $('#dContact') };
@@ -225,33 +198,6 @@ function legend(kind) {
 el.tabs.innerHTML = TABS.map(k =>
   `<button class="tab" data-tab="${k}">${DATA[k].label}</button>`).join('');
 
-/* guestbook countdown (persisted when storage allows) */
-const store = {
-  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
-  set(k, v) { try { localStorage.setItem(k, v); } catch {} }
-};
-let guestLeft = (() => {
-  const raw = store.get('console-guest-t');
-  const n = raw === null ? 60 : parseInt(raw, 10);
-  return isNaN(n) || n < 0 || n > 60 ? 60 : n;
-})();
-(function guestbook() {
-  const tick = () => {
-    if (guestLeft <= 0) {
-      store.set('console-guest-t', 0);
-      unlockGuestbook();
-      return;
-    }
-    el.guest.textContent = `ochiladi: ${Math.floor(guestLeft / 60)}:${String(guestLeft % 60).padStart(2, '0')}`;
-    guestLeft--; store.set('console-guest-t', guestLeft);
-    setTimeout(tick, 1000);
-  };
-  /* deferred one turn: unlockGuestbook() touches gbEl, which is declared
-     further down this file and would still be in its temporal dead zone. */
-  setTimeout(tick, 0);
-})();
-const guestOpen = () => guestLeft <= 0;
-
 /* ---------- views -------------------------------------------- */
 
 function setView(v) {
@@ -284,6 +230,7 @@ function renderMenu() {
 }
 
 function openDetail(i) {
+  SFX.open();
   const items = DATA[S.tab].items;
   S.item = ((i % items.length) + items.length) % items.length;
   const it = items[S.item];
@@ -300,10 +247,12 @@ function openDetail(i) {
     ${it.link ? `<a class="d-open" href="${it.link}" target="_blank" rel="noopener">Loyihani ochish →</a>` : ''}`;
   el.dbody.scrollTop = 0;
   el.pgPos.textContent = `${S.item + 1} / ${items.length}`;
+  setFootFor(it);
   setView('detail');
 }
 
 function openPage(name) {
+  SFX.open();
   const p = PAGES[name];
   el.pgPath.textContent = p.path;
   el.pgTag.textContent = p.tag;
@@ -321,237 +270,99 @@ function openChannel(name) {
 
 function goBack() {
   if (!S.on) return;
+  SFX.back();
   if (S.view !== 'menu') openChannel('work');
 }
 
-/* ---------- shared helpers ------------------------------------ */
-
-const USER = { nick: null };
-USER.nick = store.get('console-nick') || null;
-
-const esc = (t) => String(t).replace(/[&<>"]/g, (c) =>
-  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-
-const localStamps = () => { try { return JSON.parse(store.get('console-stamps') || '[]'); } catch { return []; } };
-const saveLocal = (all) => store.set('console-stamps', JSON.stringify(all.slice(0, 50)));
-
-/* ---------- guestbook: the stamp wall -------------------------
-   Flow mirrors the original: open the panel, type a name, choose a
-   seal design / ink / size, then place the stamp on the wall.
-   The seal artwork below is drawn here, in code.               ---- */
-
-const INKS = [
-  { id: 'coal',  c: '#2b2e33' },
-  { id: 'slate', c: '#55606b' },
-  { id: 'teal',  c: '#2f6b6e' },
-  { id: 'gold',  c: '#9a7526' },
-  { id: 'chalk', c: '#f6f8fa' }
-];
-const inkOf = (id) => (INKS.find(i => i.id === id) || INKS[1]).c;
-
-const SIZES = { s: 72, m: 91 };
-
-/* six frames, each drawn from primitives */
-const FRAMES = {
-  a: (k) => `<circle cx="60" cy="60" r="47" ${k(1.3)}/><circle cx="60" cy="60" r="41" ${k(0.8)}/>` +
-            Array.from({ length: 24 }, (_, i) => {
-              const a = (i / 24) * Math.PI * 2;
-              return `<line x1="${(60+Math.cos(a)*41).toFixed(1)}" y1="${(60+Math.sin(a)*41).toFixed(1)}"
-                            x2="${(60+Math.cos(a)*37).toFixed(1)}" y2="${(60+Math.sin(a)*37).toFixed(1)}" ${k(0.7)}/>`;
-            }).join(''),
-  b: (k) => `<rect x="14" y="14" width="92" height="92" ${k(1.3)}/><rect x="21" y="21" width="78" height="78" ${k(0.8)}/>` +
-            [[14,14],[106,14],[14,106],[106,106]].map(([x,y]) =>
-              `<circle cx="${x}" cy="${y}" r="2.4" ${k(1)}/>`).join(''),
-  c: (k) => `<rect x="13" y="26" width="94" height="68" rx="9" ${k(1.3)}/>` +
-            `<rect x="19" y="32" width="82" height="56" rx="6" ${k(0.7)}/>`,
-  d: (k) => {
-        const oct = (r) => Array.from({ length: 8 }, (_, i) => {
-          const a = Math.PI / 8 + (i / 8) * Math.PI * 2;
-          return `${(60+Math.cos(a)*r).toFixed(1)},${(60+Math.sin(a)*r).toFixed(1)}`;
-        }).join(' ');
-        return `<polygon points="${oct(47)}" ${k(1.3)}/><polygon points="${oct(40)}" ${k(0.8)}/>`;
-      },
-  e: (k) => `<rect x="15" y="15" width="90" height="90" rx="4" ${k(1.2)}/>` +
-            `<circle cx="60" cy="60" r="39" ${k(1)}/>` +
-            [[26,26],[94,26],[26,94],[94,94]].map(([x,y]) => `<circle cx="${x}" cy="${y}" r="1.8" ${k(1)}/>`).join(''),
-  f: (k) => `<circle cx="60" cy="60" r="40" ${k(1.1)}/>` +
-            Array.from({ length: 20 }, (_, i) => {
-              const a = (i / 20) * Math.PI * 2;
-              return `<circle cx="${(60+Math.cos(a)*46).toFixed(1)}" cy="${(60+Math.sin(a)*46).toFixed(1)}" r="3.1" ${k(0.7)}/>`;
-            }).join('')
-};
-const DESIGNS = Object.keys(FRAMES);
-
-function sealSVG(design, inkId, name, when) {
-  const ink = inkOf(inkId);
-  const k = (w) => `fill="none" stroke="${ink}" stroke-width="${w}"`;
-  const d = when ? new Date(when) : new Date();
-  const p2 = (n) => String(n).padStart(2, '0');
-  const date = `${p2(d.getDate())}.${p2(d.getMonth() + 1)}.${String(d.getFullYear()).slice(2)}`;
-  const off  = -d.getTimezoneOffset() / 60;
-  const time = `${p2(d.getHours())}:${p2(d.getMinutes())} GMT${off >= 0 ? '+' : ''}${off}`;
-  const nm   = (name || 'NAME').slice(0, 12);
-  const fs   = nm.length > 9 ? 10 : nm.length > 6 ? 12 : 14;
-
-  return `<svg viewBox="0 0 120 120" role="img" aria-label="${esc(nm)}">
-    ${FRAMES[design] ? FRAMES[design](k) : FRAMES.a(k)}
-    <text x="60" y="58" text-anchor="middle" fill="${ink}"
-      style="font-family:'Libre Baskerville',Georgia,serif;font-size:${fs}px">${esc(nm)}</text>
-    <line x1="36" y1="65" x2="84" y2="65" stroke="${ink}" stroke-width="0.6"/>
-    <text x="60" y="75" text-anchor="middle" fill="${ink}" style="font-family:var(--mono);font-size:5.6px">${date}</text>
-    <text x="60" y="83" text-anchor="middle" fill="${ink}" style="font-family:var(--mono);font-size:5.6px">${time}</text>
-  </svg>`;
-}
-
-const GB = { design: 'a', ink: 'slate', size: 'm', armed: false, marks: [], loaded: false };
-
-const gbEl = {
-  root: $('#gb'), btn: $('#gbBtn'), hint: $('#gbHint'), count: $('#gbCount'),
-  wall: $('#wall'), inner: $('#wallInner'),
-  panel: $('#gbPanel'), name: $('#gbpName'), rail: $('#gbpRail'),
-  inks: $('#gbpInks'), sizes: $('#gbpSizes'), go: $('#gbpGo'),
-  note: $('#gbpNote'), close: $('#gbpClose')
+/* localStorage, safely — private mode and blocked storage both throw */
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} }
 };
 
-/* ---- panel ---- */
-function paintRail() {
-  gbEl.rail.innerHTML = DESIGNS.map(d => `
-    <button class="tile" role="radio" data-design="${d}" aria-checked="${d === GB.design}"
-            aria-label="Design ${d}">${sealSVG(d, GB.ink, gbEl.name.value.trim() || 'NAME')}</button>`).join('');
-}
-function paintInks() {
-  gbEl.inks.innerHTML = INKS.map(i => `
-    <button class="ink" role="radio" data-ink="${i.id}" aria-checked="${i.id === GB.ink}"
-            aria-label="${i.id}"><span style="--c:${i.c}"></span></button>`).join('');
-}
+/* ---------- tovush ------------------------------------------
+   Hammasi Web Audio bilan sintez qilinadi — hech qanday audio
+   fayl yoʻq. Kontekst birinchi bosishda ochiladi, chunki
+   brauzerlar undan oldin ovozni bloklaydi.                 ---- */
 
-gbEl.rail.addEventListener('click', (e) => {
-  const b = e.target.closest('.tile'); if (!b) return;
-  GB.design = b.dataset.design; paintRail();
-});
-gbEl.inks.addEventListener('click', (e) => {
-  const b = e.target.closest('.ink'); if (!b) return;
-  GB.ink = b.dataset.ink; paintInks(); paintRail();
-});
-gbEl.sizes.addEventListener('click', (e) => {
-  const b = e.target.closest('button'); if (!b) return;
-  GB.size = b.dataset.size;
-  gbEl.sizes.querySelectorAll('button').forEach(n => n.setAttribute('aria-checked', String(n === b)));
-});
-gbEl.name.addEventListener('input', () => {
-  gbEl.name.value = gbEl.name.value.replace(/\s+/g, '');   // one word
-  paintRail();
-});
-gbEl.name.addEventListener('keydown', (e) => {
-  e.stopPropagation();
-  if (e.key === 'Enter') gbEl.go.click();
-  if (e.key === 'Escape') closePanel();
-});
+const SFX = (() => {
+  let ctx = null, master = null;
+  let on = store.get('console-sfx') !== '0';
 
-function openPanel() {
-  gbEl.panel.hidden = false;
-  gbEl.name.value = USER.nick || '';
-  gbEl.note.textContent = '';
-  paintRail(); paintInks();
-  setTimeout(() => gbEl.name.focus({ preventScroll: true }), 30);
-}
-function closePanel() { gbEl.panel.hidden = true; disarm(); }
-
-gbEl.close.addEventListener('click', closePanel);
-gbEl.btn.addEventListener('click', () => (gbEl.panel.hidden ? openPanel() : closePanel()));
-
-/* ---- arming & placing ---- */
-gbEl.go.addEventListener('click', () => {
-  const nm = gbEl.name.value.trim();
-  if (!nm) { gbEl.name.focus(); gbEl.note.textContent = 'avval ism kiriting'; return; }
-  USER.nick = nm.slice(0, 14);
-  store.set('console-nick', USER.nick);
-  GB.armed ? disarm() : arm();
-});
-
-function arm() {
-  GB.armed = true;
-  gbEl.go.dataset.armed = 'true';
-  gbEl.go.textContent = 'Endi devorni bosing \u2190';
-  gbEl.wall.classList.add('is-placing');
-  gbEl.note.textContent = 'bekor qilish: esc';
-}
-function disarm() {
-  GB.armed = false;
-  gbEl.go.dataset.armed = 'false';
-  gbEl.go.innerHTML = 'Muhrni bosing &rarr;';
-  gbEl.wall.classList.remove('is-placing');
-}
-addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && GB.armed) { disarm(); gbEl.note.textContent = ''; e.stopPropagation(); }
-}, true);
-
-gbEl.wall.addEventListener('click', async (e) => {
-  if (!GB.armed) return;
-  const r = gbEl.wall.getBoundingClientRect();
-  const row = {
-    nickname: USER.nick,
-    message: null,
-    seal: GB.design, ink: GB.ink, size: GB.size,
-    x: +(((e.clientX - r.left) / r.width) * 100).toFixed(2),
-    y: +(((e.clientY - r.top) / r.height) * 100).toFixed(2)
+  const ensure = () => {
+    if (ctx) { if (ctx.state === 'suspended') ctx.resume(); return ctx; }
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return null;
+    ctx = new AC();
+    master = ctx.createGain();
+    master.gain.value = 0.22;
+    master.connect(ctx.destination);
+    return ctx;
   };
-  disarm();
-  renderMark({ ...row, created_at: new Date().toISOString() }, true);
-  updateCount();
 
-  if (sbLive()) {
-    try { await sbInsert(row); gbEl.note.textContent = 'muhr bosildi \u2014 tasdiqlangach koʻrinadi'; }
-    catch { keepLocal(row); gbEl.note.textContent = 'oflayn \u2014 shu qurilmada saqlandi'; }
-  } else {
-    keepLocal(row); gbEl.note.textContent = 'shu qurilmada saqlandi';
-  }
-  setTimeout(closePanel, 1400);
-});
+  const tone = ({ f = 800, to = null, type = 'square', dur = 0.05, gain = 1, at = 0 }) => {
+    if (!on || !ensure()) return;
+    const t0 = ctx.currentTime + at;
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(f, t0);
+    if (to) osc.frequency.exponentialRampToValueAtTime(Math.max(20, to), t0 + dur);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(gain, t0 + 0.006);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur);
+    osc.connect(g).connect(master);
+    osc.start(t0); osc.stop(t0 + dur + 0.02);
+  };
 
-function keepLocal(row) {
-  const all = localStamps();
-  all.unshift({ ...row, created_at: new Date().toISOString() });
-  saveLocal(all);
-}
+  const noise = ({ dur = 0.03, gain = 0.5, hp = 1200, at = 0 }) => {
+    if (!on || !ensure()) return;
+    const t0 = ctx.currentTime + at;
+    const n = Math.max(1, Math.floor(ctx.sampleRate * dur));
+    const buf = ctx.createBuffer(1, n, ctx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / n);
+    const src = ctx.createBufferSource(); src.buffer = buf;
+    const f = ctx.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = hp;
+    const g = ctx.createGain(); g.gain.value = gain;
+    src.connect(f).connect(g).connect(master);
+    src.start(t0);
+  };
 
-function renderMark(st, pending) {
-  if (st.x == null || st.y == null) return;
-  const n = document.createElement('div');
-  n.className = 'mark' + (pending ? ' is-pending' : '');
-  n.style.cssText = `left:${st.x}%;top:${st.y}%;--sz:${SIZES[st.size] || 91}px;` +
-    `--rot:${(Math.random() * 16 - 8).toFixed(1)}deg;--op:${st.ink === 'chalk' ? 0.9 : 0.82}`;
-  n.innerHTML = sealSVG(st.seal, st.ink, st.nickname, st.created_at);
-  gbEl.inner.appendChild(n);
-  GB.marks.push(st);
-}
+  return {
+    get on() { return on; },
+    toggle() {
+      on = !on;
+      store.set('console-sfx', on ? '1' : '0');
+      document.documentElement.dataset.sfx = on ? 'on' : 'off';
+      if (on) { ensure(); tone({ f: 660, to: 990, dur: 0.07, gain: 0.5 }); }
+      return on;
+    },
+    prime() { ensure(); },
+    tick()  { tone({ f: 1500, type: 'square',   dur: 0.022, gain: 0.16 }); noise({ dur: 0.014, gain: 0.10, hp: 3000 }); },
+    click() { tone({ f: 320,  type: 'triangle', dur: 0.045, gain: 0.30 }); noise({ dur: 0.026, gain: 0.24, hp: 1800 }); },
+    open()  { tone({ f: 620,  to: 940, type: 'square', dur: 0.075, gain: 0.26 }); },
+    back()  { tone({ f: 720,  to: 420, type: 'square', dur: 0.075, gain: 0.22 }); },
+    powerOn() {
+      noise({ dur: 0.05, gain: 0.35, hp: 700 });
+      tone({ f: 150, to: 780, type: 'sawtooth', dur: 0.22, gain: 0.30 });
+      tone({ f: 1250, type: 'sine', dur: 0.5, gain: 0.05, at: 0.12 });
+    },
+    powerOff() {
+      tone({ f: 700, to: 90, type: 'sawtooth', dur: 0.26, gain: 0.28 });
+      noise({ dur: 0.05, gain: 0.2, hp: 500, at: 0.02 });
+    },
+  };
+})();
 
-function updateCount() {
-  const n = GB.marks.length;
-  gbEl.count.textContent = n ? `devorda ${n} ta` : '';
-}
-
-async function loadWall() {
-  if (GB.loaded) return;
-  GB.loaded = true;
-  let rows = [];
-  if (sbLive()) { try { rows = await sbList(); } catch { rows = localStamps(); } }
-  else { rows = localStamps(); }
-  rows.filter(r => r.x != null).forEach(r => renderMark(r, false));
-  updateCount();
-}
-
-function unlockGuestbook() {
-  gbEl.root.dataset.state = 'open';
-  el.guest.textContent = 'izingizni qoldiring';
-  loadWall();
-}
+document.documentElement.dataset.sfx = SFX.on ? 'on' : 'off';
 
 /* ---------- power -------------------------------------------- */
 
 function powerOn() {
   if (S.on) return;
   S.on = true;
+  SFX.prime(); SFX.powerOn();
   el.html.dataset.power = 'on';
   el.crt.classList.add('flash');
   setTimeout(() => el.crt.classList.remove('flash'), 320);
@@ -560,6 +371,7 @@ function powerOn() {
 function powerOff() {
   if (!S.on) return;
   S.on = false;
+  SFX.powerOff();
   el.html.dataset.power = 'off';
   S.channel = 'work'; S.tab = 'work'; S.sel = 0;
   markChannel();
@@ -578,10 +390,31 @@ el.back.addEventListener('click', () => { if (!S.on) powerOn(); });
 el.back.addEventListener('click', goBack);
 
 el.knob.addEventListener('click', () => {
+  SFX.click();
   if (!S.on) { powerOn(); return; }
   if (S.view === 'menu') openDetail(S.sel);
-  else if (S.view === 'detail') pulseFoot();
+  else if (S.view === 'detail') openCurrentLink();
 });
+
+/* markaziy tugma / ↵ — ochiq loyihaning saytini ochadi */
+function openCurrentLink() {
+  const it = DATA[S.tab].items[S.item];
+  if (it && it.link) {
+    SFX.open();
+    el.dfoot.textContent = 'ochilmoqda\u2026';
+    window.open(it.link, '_blank', 'noopener,noreferrer');
+    setTimeout(() => setFootFor(it), 900);
+  } else {
+    pulseFoot();
+  }
+}
+
+/* the footer only promises an action when there is a link behind it */
+function setFootFor(it) {
+  el.dfoot.innerHTML = (it && it.link)
+    ? 'ochish uchun <b>\u21b5</b> yoki <b>markaziy tugma</b> <b class="arr">\u25b8</b>'
+    : '<span style="opacity:.7">\u2190 \u2192 oldingi / keyingi</span>';
+}
 
 function pulseFoot() {
   el.dfoot.style.transition = 'none';
@@ -628,6 +461,7 @@ el.cmd.addEventListener('keydown', (e) => {
 });
 
 function moveSel(d) {
+  SFX.tick();
   const items = DATA[S.tab].items;
   S.sel = (S.sel + d + items.length) % items.length;
   document.querySelectorAll('.row').forEach(r =>
@@ -636,6 +470,7 @@ function moveSel(d) {
   if (n) n.scrollIntoView({ block: 'nearest' });
 }
 function switchTab(d) {
+  SFX.tick();
   S.tab = TABS[(TABS.indexOf(S.tab) + d + TABS.length) % TABS.length];
   S.sel = 0; renderMenu();
 }
@@ -664,7 +499,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') { openDetail(S.item + 1); e.preventDefault(); }
     if (e.key === 'ArrowUp')    { el.dbody.scrollBy({ top: -40 }); e.preventDefault(); }
     if (e.key === 'ArrowDown')  { el.dbody.scrollBy({ top: 40 });  e.preventDefault(); }
-    if (e.key === 'Enter')      { pulseFoot(); e.preventDefault(); }
+    if (e.key === 'Enter')      { openCurrentLink(); e.preventDefault(); }
   } else if (S.view === 'page') {
     if (e.key === 'ArrowUp')    { $('#pageBody').scrollBy({ top: -40 }); e.preventDefault(); }
     if (e.key === 'ArrowDown')  { $('#pageBody').scrollBy({ top: 40 });  e.preventDefault(); }
@@ -776,6 +611,12 @@ document.addEventListener('keydown', (e) => {
 if (isTouch) {
   el.dfoot.innerHTML = 'tap the <b>centre button</b> to open <b class="arr">\u25b8</b>';
 }
+
+const speaker = $('#speaker');
+if (speaker) speaker.addEventListener('click', (e) => { e.stopPropagation(); SFX.toggle(); });
+addEventListener('keydown', (e) => {
+  if ((e.key === 'm' || e.key === 'M') && e.target.tagName !== 'INPUT') SFX.toggle();
+});
 
 /* ---------- init --------------------------------------------- */
 legend('off');

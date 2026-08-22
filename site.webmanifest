@@ -1,0 +1,14 @@
+{
+  "name": "Mahmud Ulashev — Dasturchi",
+  "short_name": "Ulashev",
+  "description": "Dizayn, kod va serverni birlashtirib ishlaydigan raqamli mahsulotlar.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#b6bfc8",
+  "theme_color": "#15171a",
+  "lang": "uz",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
