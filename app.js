@@ -607,9 +607,12 @@ document.addEventListener('keydown', (e) => {
   addEventListener('blur', rest, { passive: true });
 })();
 
-/* touch copy in the detail footer */
+/* sensorli qurilmada klaviatura yoʻq — matn tugma emas, bosishni koʻrsatsin */
 if (isTouch) {
+  el.html.dataset.touch = 'on';
   el.dfoot.innerHTML = 'ochish uchun <b>markaziy tugma</b>ni bosing <b class="arr">\u25b8</b>';
+  const offTitle = document.querySelector('.off-title');
+  if (offTitle) offTitle.textContent = 'YOQISH UCHUN EKRANGA BOSING';
 }
 
 const speaker = $('#speaker');

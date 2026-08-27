@@ -260,6 +260,13 @@ html[data-power="off"] .view-off { display: flex; }
   display: flex; align-items: center; gap: 7px; text-indent: .3em;
 }
 .off-sub kbd { border-color: #4a4e54; letter-spacing: 0; text-indent: 0; }
+/* sensorli qurilmada `.off-title` JS orqali «EKRANGA BOSING»ga aylanadi,
+   shuning uchun «YOKI …» qatori ortiqcha boʻlib qoladi */
+html[data-touch="on"] .off-sub { display: none; }
+html[data-touch="on"] .off-title {
+  text-align: center; text-indent: 0; letter-spacing: .3em;
+  line-height: 1.9; padding: 0 16px;
+}
 
 /* screen head row */
 .shead {
@@ -374,6 +381,22 @@ html[data-power="off"] .view-off { display: flex; }
 .pgbtn:hover { background: rgba(231,231,236,.09); }
 .pgbtn .arr { color: var(--or-scr); }
 .pgpos { font-size: 10px; letter-spacing: 1px; color: var(--mut); }
+
+/* bo'lim sarlavhasi va ro'yxat — `.d-sub` bilan `.d-list` PAGES ichida
+   ishlatiladi, lekin ularga qoida yozilmagan edi: sarlavha oddiy matndan
+   farq qilmay, yuqorisidagi xatboshiga yopishib qolardi */
+.d-sub {
+  margin-top: 18px; font-size: 10px; letter-spacing: 1.4px;
+  color: var(--mut); text-transform: uppercase;
+}
+.d-list { margin-top: 6px; padding: 0; list-style: none; }
+.d-list li {
+  position: relative; padding-left: 13px;
+  font-size: 12px; line-height: 21px; color: var(--ink);
+}
+.d-list li::before {
+  content: '\00b7'; position: absolute; left: 2px; color: var(--or-scr);
+}
 
 /* project outcome line, links */
 
@@ -570,7 +593,7 @@ html[data-power="on"] .backbtn {
   }
 
   /* keyboard-centric bits disappear on touch */
-  .off-sub, .prompt { display: none; }
+  .prompt { display: none; }
   .off-title { font-size: 13px; }
 
   .list { width: calc(100% - 4px); }
