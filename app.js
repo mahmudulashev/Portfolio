@@ -127,7 +127,7 @@ const PAGES = {
       <div class="d-role"><b>telegram</b><a class="d-a" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">@mahmud_ulashev</a></div>
       <div class="d-role"><b>telefon</b><a class="d-a" href="tel:+998770343444">+998 77 034 34 44</a></div>
       <div class="d-role"><b>pochta</b><a class="d-a" href="mailto:maxmud_ulashev@ilma.uz">maxmud_ulashev@ilma.uz</a></div>
-      <div class="d-role"><b>github</b><a class="d-a" href="https://github.com/mahmud-ulashev" target="_blank" rel="noopener">mahmud-ulashev</a></div>
+      <div class="d-role"><b>github</b><a class="d-a" href="https://github.com/mahmudulashev" target="_blank" rel="noopener">mahmudulashev</a></div>
       <div class="d-role"><b>sayt</b>ulashev.uz</div>`
   }
 };
@@ -221,7 +221,7 @@ function renderMenu() {
   document.querySelectorAll('.tab').forEach(b =>
     b.classList.toggle('is-on', b.dataset.tab === S.tab));
   el.list.innerHTML = d.items.map((it, i) => `
-    <button class="row" data-i="${i}">
+    <button class="row${i === S.sel ? ' is-sel' : ''}" data-i="${i}">
       <span class="row-n">${String(i + 1).padStart(2, '0')}</span>
       <span class="row-t">${it.t}</span>
       ${it.f ? `<span class="row-f">${it.f}</span>` : ''}
@@ -609,7 +609,7 @@ document.addEventListener('keydown', (e) => {
 
 /* touch copy in the detail footer */
 if (isTouch) {
-  el.dfoot.innerHTML = 'tap the <b>centre button</b> to open <b class="arr">\u25b8</b>';
+  el.dfoot.innerHTML = 'ochish uchun <b>markaziy tugma</b>ni bosing <b class="arr">\u25b8</b>';
 }
 
 const speaker = $('#speaker');
