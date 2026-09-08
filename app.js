@@ -19,26 +19,33 @@ const DATA = {
   work: {
     label: 'ishlar',
     items: [
-      { t: 'Take-IELTS', y: '2026', f: '◉', cat: 'TAʼLIM',
-        role: 'Frontend, test logikasi, OAuth va natijalar',
-        body: 'Kompyuterda topshiriladigan IELTS: 3 ta reading passage, 4 ta listening part, audio tezligi, haqiqiy imtihon taymeri va test tugashi bilan chiqadigan band score. Har bir modulda 40 ta savol.',
-        note: 'Natija: haqiqiy imtihon formatida ishlaydigan platforma.',
-        tags: '#React #TypeScript #Supabase',
+      { t: 'Take-IELTS', y: '2026', f: '◉', cat: 'TAʼLIM · PLATFORMA',
+        role: 'Toʼliq mahsulot: interfeys, test logikasi, AI baholash',
+        body: 'Reading, Listening va Writing haqiqiy imtihon formatida: bir xil vaqt, savol turlari va ball jadvali. Writing inshosini AI IELTSʼning toʼrtta rasmiy mezoni boʼyicha baholaydi.',
+        note: 'Natija: har urinish saqlanadi, band score dinamikasi grafikda.',
+        tags: '#React #Vite #Supabase #AI',
         link: 'https://take-ielts.vercel.app' },
 
-      { t: 'Quizo.uz', y: '2026', f: '◉', cat: 'SAAS · IMTIHON PLATFORMASI',
-        role: 'Admin panel, test builder, API va natija oqimi',
-        body: 'Trening, sertifikat va baholash bitta panelda. Tashkilot savol turlari, vaqt chegarasi, qoidalar va maxsus havolani oʻzi belgilaydi. Natijalar real vaqtda tushadi — Excel qidirishga hojat qolmaydi. 10 dan ortiq savol turi.',
-        note: 'Natija: tashkilot imtihonni oʻzi yigʻadi va nazorat qiladi.',
-        tags: '#React #TypeScript #REST_API',
-        link: 'https://quizo.uz' },
+      { t: 'Atlas', y: '2026', f: '◉', cat: 'DASTURCHI ASBOBI · DESKTOP',
+        role: 'Swift dvigatel, macOS va Windows klientlari',
+        body: 'Muharrir fayllarni koʼrsatadi, kod esa graf boʼlib ishlaydi — Atlas oʼsha grafni chizadi: bogʼliqliklar xaritasi, oʼqish marshruti va topilmalar. Bitta Swift dvigateli ikkala platformada.',
+        note: 'Natija: ikki platforma kodni bir xil oʼqiydi, farq chiqsa CI yiqiladi.',
+        tags: '#Swift #SwiftUI #Avalonia',
+        link: 'https://github.com/mahmudulashev/Atlas' },
 
-      { t: 'Uz-Film', y: '2026', f: '◉', cat: 'HAMJAMIYAT · KINO',
-        role: 'Katalog, profil, baholash, Supabase va TMDB integratsiyasi',
-        body: 'Oʻzbek kinosi uchun bitta joy. 500 dan ortiq film, baholar, sharhlar, roʻyxatlar va profillar. Yangi chiqqanlar, koʻp koʻrilganlar va yana koʻrishga arziydigan filmlar bir joyda.',
-        note: 'Natija: oʻzbek kinosi uchun ishlaydigan hamjamiyat katalogi.',
-        tags: '#Next.js #Supabase #TMDB_API',
-        link: 'https://uz-film.vercel.app' }
+      { t: 'XIV', y: '2026', f: '◉', cat: 'E-COMMERCE · DOʼKON',
+        role: 'Figma dizayn tizimidan toʼliq frontend',
+        body: 'Moda doʼkoni: filtrlar bilan katalog, galereya hamda rang va oʼlcham tanlovi bor mahsulot sahifasi, savat va jonli qidiruv. 393px gacha moslashadi.',
+        note: 'Natija: Figma dizayn tizimi ishlaydigan doʼkonga aylandi.',
+        tags: '#Next.js #React #TypeScript #Tailwind',
+        link: 'https://cloth-store-gules.vercel.app' },
+
+      { t: 'Orpheus', y: '2026', f: '◉', cat: 'FIGMAʼDAN KODGA',
+        role: 'Piksel aniqligida qayta qurish, ikki mavzu',
+        body: 'Dizayner portfoliosi Figma manbasidan bir-bir koʼchirildi. Shrift oʼlchami, harflar orasi va boʼlimlar ritmi koʼzga chamalab emas, dizaynning oʼzidan olingan. Ikki mavzu.',
+        note: 'Natija: qurilgan sahifa 1728px artboardʼdan bir necha piksel farq qiladi.',
+        tags: '#Next.js #TypeScript #Tailwind #Motion',
+        link: 'https://orpheus-dusky.vercel.app' }
     ]
   },
 
@@ -96,9 +103,9 @@ const PAGES = {
       <div class="d-para">Gʻoya sizdan — ishlaydigan mahsulot mendan.</div>
       <div class="d-sub">RAQAMLARDA</div>
       <div class="d-role"><b>4</b>yil tajriba · 2022-yildan beri</div>
-      <div class="d-role"><b>3</b>ishlab turgan mahsulot</div>
-      <div class="d-role"><b>500+</b>film uz-film bazasida</div>
-      <div class="d-role"><b>10+</b>savol turi quizo.uz’da</div>
+      <div class="d-role"><b>4</b>ochiq loyiha</div>
+      <div class="d-role"><b>3</b>IELTS boʻlimi take-ielts’da</div>
+      <div class="d-role"><b>2</b>platforma atlas’da</div>
       <div class="d-sub">HOZIR</div>
       <div class="d-role"><b>holat</b>Yangi loyiha uchun joy bor</div>
       <div class="d-role"><b>javob</b>1 kun ichida</div>
@@ -133,9 +140,9 @@ const PAGES = {
 };
 
 const CHANGELOG = [
-  { d: '2026', lines: ['· quizo.uz test builder yangilandi'] },
-  { d: '2026', lines: ['· take-ielts band score qoʻshildi'] },
-  { d: '2026', lines: ['· uz-film 500+ filmga yetdi'] }
+  { d: '2026', lines: ['· atlas macOS va Windows uchun chiqdi'] },
+  { d: '2026', lines: ['· take-ielts writing AI baholash'] },
+  { d: '2026', lines: ['· xiv va orpheus ishga tushdi'] }
 ];
 
 const LEGENDS = {
