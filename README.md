@@ -55,7 +55,9 @@ canvas.
 **Two languages, one page.** Uzbek and English live side by side in a single `I18N` object —
 copy, key legends, section labels, `<title>`, the meta description and the hidden accessible
 block. Switching re-renders whatever is on screen without losing your place, and the choice is
-remembered. The switcher sits on the page furniture rather than on the device: top right on a
+remembered. On a first visit the language is picked from `navigator.languages` — Uzbek if the
+list contains it anywhere, English otherwise, which is what most visitors from outside the
+country get. An explicit click always wins over detection from then on. The switcher sits on the page furniture rather than on the device: top right on a
 desktop, and a compact pill in the top bar on a phone, where the furniture has nowhere to live.
 
 **Details.** JSON-LD structured data, Open Graph and Twitter cards, sitemap, PWA manifest,

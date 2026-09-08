@@ -55,6 +55,9 @@ sifatida. Skrin-riderlar va qidiruv robotlari sarlavha, xatboshi va havolalarni 
 **Ikki til, bitta sahifa.** O'zbekcha va inglizcha bitta `I18N` obyektida yonma-yon turadi:
 matn, klaviatura ro'yxati, bo'lim nomlari, `<title>`, meta tavsif va yashirin ochiq blok.
 Til almashganda ekrandagi narsa joyini yo'qotmay qayta chiziladi, tanlov esa eslab qolinadi.
+Birinchi tashrifda til `navigator.languages` ro'yxatidan topiladi: ro'yxatning istalgan
+joyida `uz` bo'lsa — o'zbekcha, aks holda inglizcha. Bir marta tugma bosilgach, tanlov
+har doim aniqlashdan ustun turadi.
 Tugma qurilmaning o'zida emas, sayt chekkasida: kompyuterda yuqori o'ngda, telefonda esa —
 u yerda "chekka" degan narsa yo'q — yuqori qatordagi ixcham "pill"da.
 

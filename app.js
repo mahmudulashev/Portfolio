@@ -936,8 +936,22 @@ document.querySelectorAll('.lang').forEach(b => {
   });
 });
 
+/* Birinchi tashrifda tilni brauzerdan topamiz. Aniq tanlov har doim
+   ustun: bir marta tugmani bosgan odam har safar oʻsha tilni koʻradi.
+   `navigator.languages` roʻyxatining hammasi tekshiriladi — koʻp
+   oʻzbekistonlik foydalanuvchida birlamchi til ingliz yoki rus boʻlsa
+   ham, roʻyxatda `uz` turadi. Qolgan hamma holatda — ingliz tili. */
+function detectLang() {
+  const saved = store.get('console-lang');
+  if (LANGS.includes(saved)) return saved;
+  const tags = (navigator.languages && navigator.languages.length)
+    ? navigator.languages
+    : [navigator.language || ''];
+  return tags.some(t => /^uz\b/i.test(t)) ? 'uz' : 'en';
+}
+
 /* ---------- init --------------------------------------------- */
-LANG = LANGS.includes(store.get('console-lang')) ? store.get('console-lang') : 'uz';
+LANG = detectLang();
 applyStatic();
 renderChangelog();
 renderTabs();
