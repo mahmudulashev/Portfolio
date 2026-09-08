@@ -123,7 +123,10 @@ const PAGES = {
         <li><span>hozir qayerdasiz</span></li>
         <li><span>qachongacha kerak</span></li>
       </ul>
-      <a class="d-open" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">Telegramda yozing →</a>`
+      <div class="d-actions">
+        <a class="d-open" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">Telegram →</a>
+        <a class="d-open" href="mailto:mahmud_u@icloud.com">Email →</a>
+      </div>`
   },
   contact: {
     path: '/aloqa', tag: '',

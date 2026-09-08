@@ -413,6 +413,10 @@ html[data-touch="on"] .off-title {
   transition: background .15s, border-color .15s;
 }
 .d-open:hover { background: rgba(255,122,77,.1); border-color: rgba(255,122,77,.8); }
+/* ikki aloqa tugmasi ustma-ust va chapga tekis tursin — `.d-open`
+   inline-block boʻlgani uchun oʻzicha yonma-yon oqib ketardi */
+.d-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.d-actions .d-open { margin-top: 0; }
 .d-a { color: var(--ink); text-decoration: none; border-bottom: 1px solid rgba(255,122,77,.4); }
 .d-a:hover { color: var(--or-scr); }
 
