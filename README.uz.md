@@ -6,7 +6,7 @@ build bosqichi yo'q, bog'liqlik yo'q — uchta fayl va brauzerning o'zi.
 
 **Sayt:** [www.ulashev.uz](https://www.ulashev.uz) · **English README:** [README.md](README.md)
 
-![Qurilma "ishlar" kanalida](docs/hero.webp)
+![Qurilma "ishlar" kanalida](docs/uz/hero.webp)
 
 ---
 
@@ -52,13 +52,19 @@ tugmani bosish taklif qilinmaydi.
 va `PAGES` obyektlarida, ikkinchi marta ko'zga ko'rinmaydigan blokda oddiy semantik HTML
 sifatida. Skrin-riderlar va qidiruv robotlari sarlavha, xatboshi va havolalarni oladi.
 
+**Ikki til, bitta sahifa.** O'zbekcha va inglizcha bitta `I18N` obyektida yonma-yon turadi:
+matn, klaviatura ro'yxati, bo'lim nomlari, `<title>`, meta tavsif va yashirin ochiq blok.
+Til almashganda ekrandagi narsa joyini yo'qotmay qayta chiziladi, tanlov esa eslab qolinadi.
+Tugma qurilmaning o'zida emas, sayt chekkasida: kompyuterda yuqori o'ngda, telefonda esa —
+u yerda "chekka" degan narsa yo'q — yuqori qatordagi ixcham "pill"da.
+
 **Tafsilotlar.** JSON-LD strukturali ma'lumot, Open Graph va Twitter kartalari, sitemap,
 PWA manifest, hamma joyda `prefers-reduced-motion` hisobga olingan va `localStorage`
 xavfsiz o'ralgan — maxfiy rejimda xato bermaydi.
 
 | Loyiha tafsiloti | Men haqimda | Yozish |
 |---|---|---|
-| ![](docs/detail.webp) | ![](docs/about.webp) | ![](docs/write.webp) |
+| ![](docs/uz/detail.webp) | ![](docs/uz/about.webp) | ![](docs/uz/write.webp) |
 
 ## Ishga tushirish
 
@@ -75,15 +81,16 @@ So'ng `http://localhost:4173` manzilini oching.
 Barcha matn [`app.js`](app.js) faylining boshida, ataylab interaksiya kodidan ajratilgan
 ikkita obyektda turadi:
 
-- `DATA` — menyuning uchta kanali (`work`, `services`, `process`) va ularning elementlari
-- `PAGES` — alohida sahifalar (`about`, `write`, `contact`)
+- `I18N.uz` va `I18N.en` — saytdagi barcha matn, har til uchun bitta shox
+- har birining ichida: `data` (`work`, `services`, `process` kanallari), `pages` (`about`,
+  `write`, `contact`), `changelog`, `legends` va `ui` yozuvlari
 
-Yangi loyiha qo'shish uchun `DATA.work.items` ichiga bitta obyekt qo'shiladi. Boshqa hech
-narsani o'zgartirish shart emas: soni, sahifalash, raqamlangan ro'yxat va klaviatura
-ko'rsatmasi — hammasi o'sha yerdan o'qiladi.
+Yangi loyiha qo'shish uchun `data.work.items` ichiga bitta obyekt qo'shiladi — **ikkala
+tilda ham**. Boshqa hech narsani o'zgartirish shart emas: soni, sahifalash, raqamlangan
+ro'yxat va klaviatura ko'rsatmasi — hammasi o'sha yerdan o'qiladi.
 
-Matnni o'zgartirganda [`index.html`](index.html) ichidagi yashirin blokni ham yangilang,
-shunda ochiq versiya bilan mos qoladi.
+Matnni o'zgartirganda [`index.html`](index.html) ichidagi ikkita yashirin blokni
+(`#sr-uz` va `#sr-en`) ham yangilang, shunda ochiq versiya bilan mos qoladi.
 
 ## Kredit
 

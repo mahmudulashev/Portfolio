@@ -13,90 +13,142 @@ const ICO = {
 const setIcon = (el, name) =>
   el.style.setProperty('--icon', `url("data:image/svg+xml,${encodeURIComponent(ICO[name])}")`);
 
-/* ---------- content (placeholder — swap for your own) -------- */
+/* ---------- content ------------------------------------------
+   Ikki til bitta joyda. Yangi matn qoʻshsangiz, ikkalasiga ham
+   qoʻshing — `setLang` faqat shu obyektdan oʻqiydi.
+   Two languages, one place. Add copy to both — `setLang` reads
+   nothing but this object.
+   ------------------------------------------------------------ */
 
-const DATA = {
-  work: {
-    label: 'ishlar',
-    items: [
-      { t: 'Take-IELTS', y: '2026', f: '◉', cat: 'TAʼLIM · PLATFORMA',
-        role: 'Toʼliq mahsulot: interfeys, test logikasi, AI baholash',
-        body: 'Reading, Listening va Writing haqiqiy imtihon formatida: bir xil vaqt, savol turlari va ball jadvali. Writing inshosini AI IELTSʼning toʼrtta rasmiy mezoni boʼyicha baholaydi.',
-        note: 'Natija: har urinish saqlanadi, band score dinamikasi grafikda.',
-        tags: '#React #Vite #Supabase #AI',
-        link: 'https://take-ielts.vercel.app' },
+const LANGS = ['uz', 'en'];
 
-      { t: 'Atlas', y: '2026', f: '◉', cat: 'DASTURCHI ASBOBI · DESKTOP',
-        role: 'Swift dvigatel, macOS va Windows klientlari',
-        body: 'Muharrir fayllarni koʼrsatadi, kod esa graf boʼlib ishlaydi — Atlas oʼsha grafni chizadi: bogʼliqliklar xaritasi, oʼqish marshruti va topilmalar. Bitta Swift dvigateli ikkala platformada.',
-        note: 'Natija: ikki platforma kodni bir xil oʼqiydi, farq chiqsa CI yiqiladi.',
-        tags: '#Swift #SwiftUI #Avalonia',
-        link: 'https://github.com/mahmudulashev/Atlas' },
+const I18N = {
 
-      { t: 'XIV', y: '2026', f: '◉', cat: 'E-COMMERCE · DOʼKON',
-        role: 'Figma dizayn tizimidan toʼliq frontend',
-        body: 'Moda doʼkoni: filtrlar bilan katalog, galereya hamda rang va oʼlcham tanlovi bor mahsulot sahifasi, savat va jonli qidiruv. 393px gacha moslashadi.',
-        note: 'Natija: Figma dizayn tizimi ishlaydigan doʼkonga aylandi.',
-        tags: '#Next.js #React #TypeScript #Tailwind',
-        link: 'https://cloth-store-gules.vercel.app' },
+/* ═══════════════════════════ OʻZBEKCHA ═══════════════════════ */
+uz: {
+  htmlLang: 'uz',
+  docTitle: 'Mahmud Ulashev — Dasturchi va mahsulot dizayneri',
+  docDesc:  'Mahmud Ulashev dizayn, kod va serverni birlashtirib ishlaydigan raqamli mahsulotlar yaratadi. 4 yil tajriba.',
 
-      { t: 'Orpheus', y: '2026', f: '◉', cat: 'FIGMAʼDAN KODGA',
-        role: 'Piksel aniqligida qayta qurish, ikki mavzu',
-        body: 'Dizayner portfoliosi Figma manbasidan bir-bir koʼchirildi. Shrift oʼlchami, harflar orasi va boʼlimlar ritmi koʼzga chamalab emas, dizaynning oʼzidan olingan. Ikki mavzu.',
-        note: 'Natija: qurilgan sahifa 1728px artboardʼdan bir necha piksel farq qiladi.',
-        tags: '#Next.js #TypeScript #Tailwind #Motion',
-        link: 'https://orpheus-dusky.vercel.app' }
-    ]
+  ui: {
+    count:       (n) => `${n} ta`,
+    promptPh:    (n) => `raqam yozing: 1–${n}`,
+    no:          '№',
+    hint:        'ochish uchun bosing',
+    openFoot:    'ochish uchun <b>↵</b> yoki <b>markaziy tugma</b> <b class="arr">▸</b>',
+    openFootTap: 'ochish uchun <b>markaziy tugma</b>ni bosing <b class="arr">▸</b>',
+    navFoot:     '<span style="opacity:.7">← → oldingi / keyingi</span>',
+    opening:     'ochilmoqda…',
+    openLink:    'Loyihani ochish →',
+    backFoot:    'qaytish uchun <b>esc</b> yoki <b>back</b>',
+    prev:        'oldingi',
+    next:        'keyingi',
+    roleLabel:   'rol',
+    offTitle:    'YOQISH UCHUN <kbd>P</kbd>',
+    offTitleTap: 'YOQISH UCHUN EKRANGA BOSING',
+    offSub:      'YOKI EKRANGA BOSING',
+    changelog:   'OʻZGARISHLAR',
+    keyboard:    'KLAVIATURA',
+    langTitle:   'TIL',
+    power:       'QUVVAT',
+    back:        'ORQAGA',
+    aria: {
+      sound: 'Tovush', power: 'Quvvat', back: 'Orqaga', open: 'Ochish',
+      wheel: 'Gʻildirak — kanalni oʻzgartirish',
+      work: 'Ishlar', write: 'Yozish', about: 'Men haqimda', contact: 'Aloqa',
+      lang: 'Sayt tili', langUz: 'Oʻzbekcha', langEn: 'Inglizcha'
+    }
   },
 
-  services: {
-    label: 'xizmatlar',
-    items: [
-      { t: 'Yangi sayt yoki ilova', y: '6–10 hafta', cat: 'NOLDAN',
-        role: 'Dizayn · Sayt · Admin panel · Toʻlov',
-        body: 'Noldan boshlaymiz: dizayn, sayt, admin panel, toʻlov va ishlashni davom ettiradigan ichki qism.',
-        note: 'Natija: gʻoyadan ishga tushgan mahsulotgacha.',
-        tags: '#Frontend #Backend #Deploy' },
-
-      { t: 'Ishni avtomatlashtirish', y: '2–6 hafta', cat: 'TIZIMLASHTIRISH',
-        role: 'Buyurtma · Navbat · Hisobot',
-        body: 'Buyurtma, navbat va hisobot daftar hamda Excel’dan chiqib, oʻzi ishlaydigan tizimga oʻtadi.',
-        note: 'Natija: jamoa kamroq qoʻlda, koʻproq tizim bilan ishlaydi.',
-        tags: '#Avtomatlashtirish #Panel' },
-
-      { t: 'Bor loyihani tuzatish', y: 'avval audit', cat: 'TIKLASH',
-        role: 'Audit · Refactor · Yakunlash',
-        body: 'Oldingi dasturchi tashlab ketgan boʻlsa, kodni koʻrib chiqaman, poydevorini tuzataman va ishni oxirigacha olib boraman.',
-        note: 'Natija: tashlab ketilgan loyiha yana harakatga keladi.',
-        tags: '#Audit #Refactor' }
-    ]
+  legends: {
+    off:    [['P', 'YOQISH'], ['M', 'TOVUSH']],
+    menu:   [['↑ ↓', 'TANLASH'], ['← →', 'BOʻLIMLAR'], ['↵', 'OCHISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
+    detail: [['← →', 'OLDINGI / KEYINGI'], ['↑ ↓', 'SURISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
+    page:   [['↑ ↓', 'SURISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']]
   },
 
-  process: {
-    label: 'jarayon',
-    items: [
-      { t: 'Bir gaplashamiz', y: 'bepul', cat: '1-QADAM',
-        role: 'Yarim soat · Savol va javob',
-        body: 'Nima kerakligini aytasiz, men savol beraman. Yarim soatdan keyin narx va muddat aniq boʻladi.',
-        tags: '#Savol #Yoʻnalish #Reja' },
+  data: {
+    work: {
+      label: 'ishlar',
+      items: [
+        { t: 'Take-IELTS', y: '2026', f: '◉', cat: 'TAʼLIM · PLATFORMA',
+          role: 'Toʼliq mahsulot: interfeys, test logikasi, AI baholash',
+          body: 'Reading, Listening va Writing haqiqiy imtihon formatida: bir xil vaqt, savol turlari va ball jadvali. Writing inshosini AI IELTSʼning toʼrtta rasmiy mezoni boʼyicha baholaydi.',
+          note: 'Natija: har urinish saqlanadi, band score dinamikasi grafikda.',
+          tags: '#React #Vite #Supabase #AI',
+          link: 'https://take-ielts.vercel.app' },
 
-      { t: 'Birinchi ishlaydigan versiya', y: '2 hafta', cat: '2-QADAM',
-        role: 'Eng kerakli qism birinchi',
-        body: 'Butun loyihani kutmaysiz. Eng kerakli qismni erta koʻrasiz, oʻzgartirish aytasiz va yoʻnalish aniq boʻladi.',
-        tags: '#Dizayn #Kod #Tizim' },
+        { t: 'Atlas', y: '2026', f: '◉', cat: 'DASTURCHI ASBOBI · DESKTOP',
+          role: 'Swift dvigatel, macOS va Windows klientlari',
+          body: 'Muharrir fayllarni koʼrsatadi, kod esa graf boʼlib ishlaydi — Atlas oʼsha grafni chizadi: bogʼliqliklar xaritasi, oʼqish marshruti va topilmalar. Bitta Swift dvigateli ikkala platformada.',
+          note: 'Natija: ikki platforma kodni bir xil oʼqiydi, farq chiqsa CI yiqiladi.',
+          tags: '#Swift #SwiftUI #Avalonia',
+          link: 'https://github.com/mahmudulashev/Atlas' },
 
-      { t: 'Topshiraman, oʻrgataman', y: 'topshirish', cat: '3-QADAM',
-        role: 'Kod sizniki · 1 oy qoʻllab-quvvatlash',
-        body: 'Kod sizniki. Xodimlaringizga ishlatishni koʻrsataman va bir oy bepul qoʻllab turaman.',
-        tags: '#Deploy #Topshirish #Yordam' }
-    ]
-  }
-};
+        { t: 'XIV', y: '2026', f: '◉', cat: 'E-COMMERCE · DOʼKON',
+          role: 'Figma dizayn tizimidan toʼliq frontend',
+          body: 'Moda doʼkoni: filtrlar bilan katalog, galereya hamda rang va oʼlcham tanlovi bor mahsulot sahifasi, savat va jonli qidiruv. 393px gacha moslashadi.',
+          note: 'Natija: Figma dizayn tizimi ishlaydigan doʼkonga aylandi.',
+          tags: '#Next.js #React #TypeScript #Tailwind',
+          link: 'https://cloth-store-gules.vercel.app' },
 
-const PAGES = {
-  about: {
-    path: '/men', tag: '',
-    html: `
+        { t: 'Orpheus', y: '2026', f: '◉', cat: 'FIGMAʼDAN KODGA',
+          role: 'Piksel aniqligida qayta qurish, ikki mavzu',
+          body: 'Dizayner portfoliosi Figma manbasidan bir-bir koʼchirildi. Shrift oʼlchami, harflar orasi va boʼlimlar ritmi koʼzga chamalab emas, dizaynning oʼzidan olingan. Ikki mavzu.',
+          note: 'Natija: qurilgan sahifa 1728px artboardʼdan bir necha piksel farq qiladi.',
+          tags: '#Next.js #TypeScript #Tailwind #Motion',
+          link: 'https://orpheus-dusky.vercel.app' }
+      ]
+    },
+
+    services: {
+      label: 'xizmatlar',
+      items: [
+        { t: 'Yangi sayt yoki ilova', y: '6–10 hafta', cat: 'NOLDAN',
+          role: 'Dizayn · Sayt · Admin panel · Toʻlov',
+          body: 'Noldan boshlaymiz: dizayn, sayt, admin panel, toʻlov va ishlashni davom ettiradigan ichki qism.',
+          note: 'Natija: gʻoyadan ishga tushgan mahsulotgacha.',
+          tags: '#Frontend #Backend #Deploy' },
+
+        { t: 'Ishni avtomatlashtirish', y: '2–6 hafta', cat: 'TIZIMLASHTIRISH',
+          role: 'Buyurtma · Navbat · Hisobot',
+          body: 'Buyurtma, navbat va hisobot daftar hamda Excel’dan chiqib, oʻzi ishlaydigan tizimga oʻtadi.',
+          note: 'Natija: jamoa kamroq qoʻlda, koʻproq tizim bilan ishlaydi.',
+          tags: '#Avtomatlashtirish #Panel' },
+
+        { t: 'Bor loyihani tuzatish', y: 'avval audit', cat: 'TIKLASH',
+          role: 'Audit · Refactor · Yakunlash',
+          body: 'Oldingi dasturchi tashlab ketgan boʻlsa, kodni koʻrib chiqaman, poydevorini tuzataman va ishni oxirigacha olib boraman.',
+          note: 'Natija: tashlab ketilgan loyiha yana harakatga keladi.',
+          tags: '#Audit #Refactor' }
+      ]
+    },
+
+    process: {
+      label: 'jarayon',
+      items: [
+        { t: 'Bir gaplashamiz', y: 'bepul', cat: '1-QADAM',
+          role: 'Yarim soat · Savol va javob',
+          body: 'Nima kerakligini aytasiz, men savol beraman. Yarim soatdan keyin narx va muddat aniq boʻladi.',
+          tags: '#Savol #Yoʻnalish #Reja' },
+
+        { t: 'Birinchi ishlaydigan versiya', y: '2 hafta', cat: '2-QADAM',
+          role: 'Eng kerakli qism birinchi',
+          body: 'Butun loyihani kutmaysiz. Eng kerakli qismni erta koʻrasiz, oʻzgartirish aytasiz va yoʻnalish aniq boʻladi.',
+          tags: '#Dizayn #Kod #Tizim' },
+
+        { t: 'Topshiraman, oʻrgataman', y: 'topshirish', cat: '3-QADAM',
+          role: 'Kod sizniki · 1 oy qoʻllab-quvvatlash',
+          body: 'Kod sizniki. Xodimlaringizga ishlatishni koʻrsataman va bir oy bepul qoʻllab turaman.',
+          tags: '#Deploy #Topshirish #Yordam' }
+      ]
+    }
+  },
+
+  pages: {
+    about: {
+      path: '/men', tag: '',
+      html: `
       <div class="d-title">Mahmud Ulashev</div>
       <div class="d-meta">DASTURCHI · 4 YIL</div>
       <div class="d-para">Dizayn, interfeys, server va ular orasidagi koʻrinmas ish. Siz bitta odam bilan gaplashasiz — butun natijaga bitta odam javob beradi.</div>
@@ -110,10 +162,10 @@ const PAGES = {
       <div class="d-role"><b>holat</b>Yangi loyiha uchun joy bor</div>
       <div class="d-role"><b>javob</b>1 kun ichida</div>
       <div class="d-role"><b>tillar</b>UZ · RU · EN</div>`
-  },
-  write: {
-    path: '/yozish', tag: '',
-    html: `
+    },
+    write: {
+      path: '/yozish', tag: '',
+      html: `
       <div class="d-title">Loyihangiz bormi?</div>
       <div class="d-meta">1 KUN ICHIDA JAVOB</div>
       <div class="d-para">Hajmini bilmasangiz ham yozing. Men kerakli savollarni berib, birinchi ishlaydigan qadamni aniqlab beraman.</div>
@@ -127,10 +179,10 @@ const PAGES = {
         <a class="d-open" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">Telegram →</a>
         <a class="d-open" href="mailto:mahmud_u@icloud.com">Email →</a>
       </div>`
-  },
-  contact: {
-    path: '/aloqa', tag: '',
-    html: `
+    },
+    contact: {
+      path: '/aloqa', tag: '',
+      html: `
       <div class="d-title">Aloqa</div>
       <div class="d-meta">TELEGRAMDA TEZROQ JAVOB</div>
       <div class="d-para">Telegramda qisqacha yozing: nima kerak, hozir qayerdasiz va qachongacha kerak.</div>
@@ -139,21 +191,202 @@ const PAGES = {
       <div class="d-role"><b>pochta</b><a class="d-a" href="mailto:mahmud_u@icloud.com">mahmud_u@icloud.com</a></div>
       <div class="d-role"><b>github</b><a class="d-a" href="https://github.com/mahmudulashev" target="_blank" rel="noopener">mahmudulashev</a></div>
       <div class="d-role"><b>sayt</b>ulashev.uz</div>`
-  }
+    }
+  },
+
+  changelog: [
+    { d: '2026', lines: ['· atlas macOS va Windows uchun chiqdi'] },
+    { d: '2026', lines: ['· take-ielts writing AI baholash'] },
+    { d: '2026', lines: ['· xiv va orpheus ishga tushdi'] }
+  ]
+},
+
+/* ═══════════════════════════ ENGLISH ═════════════════════════ */
+en: {
+  htmlLang: 'en',
+  docTitle: 'Mahmud Ulashev — Developer and product designer',
+  docDesc:  'Mahmud Ulashev builds digital products where design, code and the server are one job. Four years of experience.',
+
+  ui: {
+    count:       (n) => `${n} item${n === 1 ? '' : 's'}`,
+    promptPh:    (n) => `type a number: 1–${n}`,
+    no:          'No.',
+    hint:        'press to open',
+    openFoot:    'press <b>↵</b> or the <b>centre button</b> to open <b class="arr">▸</b>',
+    openFootTap: 'tap the <b>centre button</b> to open <b class="arr">▸</b>',
+    navFoot:     '<span style="opacity:.7">← → previous / next</span>',
+    opening:     'opening…',
+    openLink:    'Open the project →',
+    backFoot:    'press <b>esc</b> or <b>back</b> to return',
+    prev:        'previous',
+    next:        'next',
+    roleLabel:   'role',
+    offTitle:    'PRESS <kbd>P</kbd> TO SWITCH ON',
+    offTitleTap: 'TAP THE SCREEN TO SWITCH ON',
+    offSub:      'OR TAP THE SCREEN',
+    changelog:   'CHANGELOG',
+    keyboard:    'KEYBOARD',
+    langTitle:   'LANGUAGE',
+    power:       'POWER',
+    back:        'BACK',
+    aria: {
+      sound: 'Sound', power: 'Power', back: 'Back', open: 'Open',
+      wheel: 'Wheel — change channel',
+      work: 'Work', write: 'Write', about: 'About', contact: 'Contact',
+      lang: 'Site language', langUz: 'Uzbek', langEn: 'English'
+    }
+  },
+
+  legends: {
+    off:    [['P', 'POWER'], ['M', 'SOUND']],
+    menu:   [['↑ ↓', 'SELECT'], ['← →', 'SECTIONS'], ['↵', 'OPEN'], ['⌥ ← ↑ → ↓', 'CHANNEL'], ['P', 'POWER OFF'], ['M', 'SOUND']],
+    detail: [['← →', 'PREVIOUS / NEXT'], ['↑ ↓', 'SCROLL'], ['⌥ ← ↑ → ↓', 'CHANNEL'], ['ESC', 'BACK'], ['P', 'POWER OFF'], ['M', 'SOUND']],
+    page:   [['↑ ↓', 'SCROLL'], ['⌥ ← ↑ → ↓', 'CHANNEL'], ['ESC', 'BACK'], ['P', 'POWER OFF'], ['M', 'SOUND']]
+  },
+
+  data: {
+    work: {
+      label: 'work',
+      items: [
+        { t: 'Take-IELTS', y: '2026', f: '◉', cat: 'EDUCATION · PLATFORM',
+          role: 'Whole product: interface, test logic, AI marking',
+          body: 'Reading, Listening and Writing in the real exam format: the same timing, the same question types, the same band table. Writing essays are marked by AI against the four official IELTS criteria.',
+          note: 'Result: every attempt is stored and band score progress is charted.',
+          tags: '#React #Vite #Supabase #AI',
+          link: 'https://take-ielts.vercel.app' },
+
+        { t: 'Atlas', y: '2026', f: '◉', cat: 'DEVELOPER TOOL · DESKTOP',
+          role: 'Swift engine, macOS and Windows clients',
+          body: 'Your editor shows files, but code runs as a graph — Atlas draws that graph: a dependency map, a reading route and findings. One Swift engine behind both platforms.',
+          note: 'Result: both platforms read a codebase identically, and CI fails if they diverge.',
+          tags: '#Swift #SwiftUI #Avalonia',
+          link: 'https://github.com/mahmudulashev/Atlas' },
+
+        { t: 'XIV', y: '2026', f: '◉', cat: 'E-COMMERCE · STOREFRONT',
+          role: 'Whole frontend from a Figma design system',
+          body: 'A fashion storefront: a filtered catalogue, a product page with gallery and colour and size pickers, a shopping bag and live search. Responsive down to 393px.',
+          note: 'Result: a Figma design system became a working storefront.',
+          tags: '#Next.js #React #TypeScript #Tailwind',
+          link: 'https://cloth-store-gules.vercel.app' },
+
+        { t: 'Orpheus', y: '2026', f: '◉', cat: 'FIGMA TO CODE',
+          role: 'Pixel-faithful rebuild, two themes',
+          body: 'A designer portfolio rebuilt one to one from its Figma source. Type sizes, letter-spacing and section rhythm come from the design itself, not from eye-balling it. Two themes.',
+          note: 'Result: the built page lands within a couple of pixels of the 1728px artboard.',
+          tags: '#Next.js #TypeScript #Tailwind #Motion',
+          link: 'https://orpheus-dusky.vercel.app' }
+      ]
+    },
+
+    services: {
+      label: 'services',
+      items: [
+        { t: 'A new site or app', y: '6–10 weeks', cat: 'FROM SCRATCH',
+          role: 'Design · Site · Admin panel · Payments',
+          body: 'We start from nothing: the design, the site, an admin panel, payments and the back end that keeps it all running.',
+          note: 'Result: from an idea to a product in use.',
+          tags: '#Frontend #Backend #Deploy' },
+
+        { t: 'Automating the work', y: '2–6 weeks', cat: 'SYSTEMATISING',
+          role: 'Orders · Queues · Reports',
+          body: 'Orders, queues and reports move out of notebooks and spreadsheets into a system that runs itself.',
+          note: 'Result: the team works less by hand and more through the system.',
+          tags: '#Automation #Dashboard' },
+
+        { t: 'Rescuing an existing project', y: 'audit first', cat: 'RECOVERY',
+          role: 'Audit · Refactor · Completion',
+          body: 'If the previous developer walked away, I read the code, repair the foundation and carry the work through to the finish.',
+          note: 'Result: an abandoned project moves again.',
+          tags: '#Audit #Refactor' }
+      ]
+    },
+
+    process: {
+      label: 'process',
+      items: [
+        { t: 'We talk first', y: 'free', cat: 'STEP 1',
+          role: 'Half an hour · Questions and answers',
+          body: 'You tell me what you need and I ask the questions. Half an hour later the price and the timeline are clear.',
+          tags: '#Questions #Direction #Plan' },
+
+        { t: 'A first working version', y: '2 weeks', cat: 'STEP 2',
+          role: 'The part that matters, first',
+          body: 'You do not wait for the whole project. You see the most important part early, ask for changes, and the direction becomes clear.',
+          tags: '#Design #Code #System' },
+
+        { t: 'Handover and training', y: 'handover', cat: 'STEP 3',
+          role: 'The code is yours · A month of support',
+          body: 'The code is yours. I show your staff how to run it and support you free of charge for a month.',
+          tags: '#Deploy #Handover #Support' }
+      ]
+    }
+  },
+
+  pages: {
+    about: {
+      path: '/about', tag: '',
+      html: `
+      <div class="d-title">Mahmud Ulashev</div>
+      <div class="d-meta">DEVELOPER · 4 YEARS</div>
+      <div class="d-para">Design, interface, server and the invisible work in between. You talk to one person — and one person answers for the whole result.</div>
+      <div class="d-para">The idea is yours — the working product is mine.</div>
+      <div class="d-sub">IN NUMBERS</div>
+      <div class="d-role"><b>4</b>years of experience · since 2022</div>
+      <div class="d-role"><b>4</b>open-source projects</div>
+      <div class="d-role"><b>3</b>IELTS sections in take-ielts</div>
+      <div class="d-role"><b>2</b>platforms in atlas</div>
+      <div class="d-sub">RIGHT NOW</div>
+      <div class="d-role"><b>status</b>Room for a new project</div>
+      <div class="d-role"><b>reply</b>Within a day</div>
+      <div class="d-role"><b>languages</b>UZ · RU · EN</div>`
+    },
+    write: {
+      path: '/write', tag: '',
+      html: `
+      <div class="d-title">Have a project?</div>
+      <div class="d-meta">A REPLY WITHIN A DAY</div>
+      <div class="d-para">Write even if you do not know how big it is. I will ask the right questions and work out the first step that ships.</div>
+      <div class="d-sub">IN SHORT, TELL ME</div>
+      <ul class="d-list">
+        <li><span>what you need</span></li>
+        <li><span>where you are now</span></li>
+        <li><span>by when</span></li>
+      </ul>
+      <div class="d-actions">
+        <a class="d-open" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">Telegram →</a>
+        <a class="d-open" href="mailto:mahmud_u@icloud.com">Email →</a>
+      </div>`
+    },
+    contact: {
+      path: '/contact', tag: '',
+      html: `
+      <div class="d-title">Contact</div>
+      <div class="d-meta">TELEGRAM IS FASTEST</div>
+      <div class="d-para">Write briefly on Telegram: what you need, where you are now and by when.</div>
+      <div class="d-role"><b>telegram</b><a class="d-a" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">@mahmud_ulashev</a></div>
+      <div class="d-role"><b>phone</b><a class="d-a" href="tel:+998770343444">+998 77 034 34 44</a></div>
+      <div class="d-role"><b>email</b><a class="d-a" href="mailto:mahmud_u@icloud.com">mahmud_u@icloud.com</a></div>
+      <div class="d-role"><b>github</b><a class="d-a" href="https://github.com/mahmudulashev" target="_blank" rel="noopener">mahmudulashev</a></div>
+      <div class="d-role"><b>site</b>ulashev.uz</div>`
+    }
+  },
+
+  changelog: [
+    { d: '2026', lines: ['· atlas released for macOS and Windows'] },
+    { d: '2026', lines: ['· take-ielts writing marked by AI'] },
+    { d: '2026', lines: ['· xiv and orpheus went live'] }
+  ]
+}
+
 };
 
-const CHANGELOG = [
-  { d: '2026', lines: ['· atlas macOS va Windows uchun chiqdi'] },
-  { d: '2026', lines: ['· take-ielts writing AI baholash'] },
-  { d: '2026', lines: ['· xiv va orpheus ishga tushdi'] }
-];
-
-const LEGENDS = {
-  off:    [['P', 'YOQISH'], ['M', 'TOVUSH']],
-  menu:   [['↑ ↓', 'TANLASH'], ['← →', 'BOʻLIMLAR'], ['↵', 'OCHISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
-  detail: [['← →', 'OLDINGI / KEYINGI'], ['↑ ↓', 'SURISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']],
-  page:   [['↑ ↓', 'SURISH'], ['⌥ ← ↑ → ↓', 'KANAL'], ['ESC', 'ORQAGA'], ['P', 'OʻCHIRISH'], ['M', 'TOVUSH']]
-};
+/* faol til — tanlov saqlanadi / active language, choice is remembered */
+let LANG = 'uz';
+const T  = () => I18N[LANG];
+const DATA     = () => T().data;
+const PAGES    = () => T().pages;
+const LEGENDS  = () => T().legends;
+const UI       = () => T().ui;
 
 /* ---------- state & dom ------------------------------------- */
 
@@ -196,17 +429,21 @@ fit();
 
 /* ---------- furniture ---------------------------------------- */
 
-el.changelog.innerHTML = '<div class="cl-title">OʻZGARISHLAR</div>' + CHANGELOG.map(c =>
-  `<div class="cl-date">${c.d}</div>` + c.lines.map(l => `<div class="cl-item">${l}</div>`).join('')
-).join('');
+function renderChangelog() {
+  el.changelog.innerHTML = `<div class="cl-title">${UI().changelog}</div>` + T().changelog.map(c =>
+    `<div class="cl-date">${c.d}</div>` + c.lines.map(l => `<div class="cl-item">${l}</div>`).join('')
+  ).join('');
+}
 
 function legend(kind) {
-  el.legend.innerHTML = LEGENDS[kind].map(([k, v]) =>
+  el.legend.innerHTML = LEGENDS()[kind].map(([k, v]) =>
     `<li><span class="k">${k}</span><span>${v}</span></li>`).join('');
 }
 
-el.tabs.innerHTML = TABS.map(k =>
-  `<button class="tab" data-tab="${k}">${DATA[k].label}</button>`).join('');
+function renderTabs() {
+  el.tabs.innerHTML = TABS.map(k =>
+    `<button class="tab" data-tab="${k}">${DATA()[k].label}</button>`).join('');
+}
 
 /* ---------- views -------------------------------------------- */
 
@@ -224,10 +461,10 @@ function markChannel() {
 }
 
 function renderMenu() {
-  const d = DATA[S.tab];
+  const d = DATA()[S.tab];
   el.menuPath.textContent = '/' + d.label.replace(' ', '-');
-  el.menuCount.textContent = `${d.items.length} ta`;
-  el.cmd.placeholder = `raqam yozing: 1–${d.items.length}`;
+  el.menuCount.textContent = UI().count(d.items.length);
+  el.cmd.placeholder = UI().promptPh(d.items.length);
   document.querySelectorAll('.tab').forEach(b =>
     b.classList.toggle('is-on', b.dataset.tab === S.tab));
   el.list.innerHTML = d.items.map((it, i) => `
@@ -241,20 +478,20 @@ function renderMenu() {
 
 function openDetail(i) {
   SFX.open();
-  const items = DATA[S.tab].items;
+  const items = DATA()[S.tab].items;
   S.item = ((i % items.length) + items.length) % items.length;
   const it = items[S.item];
   el.crumb.innerHTML =
-    `<span class="seg">${DATA[S.tab].label}</span><span class="sep">/</span><span class="seg">${it.t.toLowerCase()}</span>`;
-  el.detNo.textContent = `№ ${S.item + 1}`;
+    `<span class="seg">${DATA()[S.tab].label}</span><span class="sep">/</span><span class="seg">${it.t.toLowerCase()}</span>`;
+  el.detNo.textContent = `${UI().no} ${S.item + 1}`;
   el.dbody.innerHTML = `
     <div class="d-title">${it.t}</div>
     <div class="d-meta"><span class="yr">${it.y}</span> · ${it.cat}</div>
-    <div class="d-role"><b>rol</b>${it.role}</div>
+    <div class="d-role"><b>${UI().roleLabel}</b>${it.role}</div>
     <div class="d-para">${it.body}</div>
     ${it.note ? `<div class="d-note">${it.note}</div>` : ''}
     <div class="d-tags">${it.tags}</div>
-    ${it.link ? `<a class="d-open" href="${it.link}" target="_blank" rel="noopener">Loyihani ochish →</a>` : ''}`;
+    ${it.link ? `<a class="d-open" href="${it.link}" target="_blank" rel="noopener">${UI().openLink}</a>` : ''}`;
   el.dbody.scrollTop = 0;
   el.pgPos.textContent = `${S.item + 1} / ${items.length}`;
   setFootFor(it);
@@ -263,7 +500,7 @@ function openDetail(i) {
 
 function openPage(name) {
   SFX.open();
-  const p = PAGES[name];
+  const p = PAGES()[name];
   el.pgPath.textContent = p.path;
   el.pgTag.textContent = p.tag;
   el.pageBody.innerHTML = p.html;
@@ -296,7 +533,7 @@ const store = {
    brauzerlar undan oldin ovozni bloklaydi.                 ---- */
 
 const SFX = (() => {
-  let ctx = null, master = null;
+  let ctx = null, master = null, muted = false;
   let on = store.get('console-sfx') !== '0';
 
   const ensure = () => {
@@ -311,7 +548,7 @@ const SFX = (() => {
   };
 
   const tone = ({ f = 800, to = null, type = 'square', dur = 0.05, gain = 1, at = 0 }) => {
-    if (!on || !ensure()) return;
+    if (!on || muted || !ensure()) return;
     const t0 = ctx.currentTime + at;
     const osc = ctx.createOscillator();
     const g = ctx.createGain();
@@ -326,7 +563,7 @@ const SFX = (() => {
   };
 
   const noise = ({ dur = 0.03, gain = 0.5, hp = 1200, at = 0 }) => {
-    if (!on || !ensure()) return;
+    if (!on || muted || !ensure()) return;
     const t0 = ctx.currentTime + at;
     const n = Math.max(1, Math.floor(ctx.sampleRate * dur));
     const buf = ctx.createBuffer(1, n, ctx.sampleRate);
@@ -341,6 +578,8 @@ const SFX = (() => {
 
   return {
     get on() { return on; },
+    /* til almashganda ekran qayta chiziladi — ovoz chalinmasin */
+    mute(v) { muted = !!v; },
     toggle() {
       on = !on;
       store.set('console-sfx', on ? '1' : '0');
@@ -408,10 +647,10 @@ el.knob.addEventListener('click', () => {
 
 /* markaziy tugma / ↵ — ochiq loyihaning saytini ochadi */
 function openCurrentLink() {
-  const it = DATA[S.tab].items[S.item];
+  const it = DATA()[S.tab].items[S.item];
   if (it && it.link) {
     SFX.open();
-    el.dfoot.textContent = 'ochilmoqda\u2026';
+    el.dfoot.textContent = UI().opening;
     window.open(it.link, '_blank', 'noopener,noreferrer');
     setTimeout(() => setFootFor(it), 900);
   } else {
@@ -422,8 +661,8 @@ function openCurrentLink() {
 /* the footer only promises an action when there is a link behind it */
 function setFootFor(it) {
   el.dfoot.innerHTML = (it && it.link)
-    ? 'ochish uchun <b>\u21b5</b> yoki <b>markaziy tugma</b> <b class="arr">\u25b8</b>'
-    : '<span style="opacity:.7">\u2190 \u2192 oldingi / keyingi</span>';
+    ? (isTouch ? UI().openFootTap : UI().openFoot)
+    : UI().navFoot;
 }
 
 function pulseFoot() {
@@ -453,7 +692,7 @@ $('#pgNext').addEventListener('click', () => openDetail(S.item + 1));
 el.cmd.addEventListener('keydown', (e) => {
   e.stopPropagation();
   if (e.altKey) { altChannel(e); return; }
-  const n = DATA[S.tab].items.length;
+  const n = DATA()[S.tab].items.length;
   if (e.key === 'Enter') {
     const v = parseInt(el.cmd.value.trim(), 10);
     el.cmd.value = '';
@@ -472,7 +711,7 @@ el.cmd.addEventListener('keydown', (e) => {
 
 function moveSel(d) {
   SFX.tick();
-  const items = DATA[S.tab].items;
+  const items = DATA()[S.tab].items;
   S.sel = (S.sel + d + items.length) % items.length;
   document.querySelectorAll('.row').forEach(r =>
     r.classList.toggle('is-sel', +r.dataset.i === S.sel));
@@ -491,6 +730,8 @@ function altChannel(e) {
 
 document.addEventListener('keydown', (e) => {
   if (e.target.tagName === 'INPUT') return;
+  /* til tugmasidagi Enter/Bo'sh joy tugmaning o'ziga tegishli — ushlab qolmaymiz */
+  if (e.target.closest && e.target.closest('.lang')) return;
   if (e.key === 'p' || e.key === 'P') { togglePower(); e.preventDefault(); return; }
   if (!S.on) {
     if (e.key === 'Enter' || e.key === ' ') { powerOn(); e.preventDefault(); }
@@ -618,12 +859,7 @@ document.addEventListener('keydown', (e) => {
 })();
 
 /* sensorli qurilmada klaviatura yoʻq — matn tugma emas, bosishni koʻrsatsin */
-if (isTouch) {
-  el.html.dataset.touch = 'on';
-  el.dfoot.innerHTML = 'ochish uchun <b>markaziy tugma</b>ni bosing <b class="arr">\u25b8</b>';
-  const offTitle = document.querySelector('.off-title');
-  if (offTitle) offTitle.textContent = 'YOQISH UCHUN EKRANGA BOSING';
-}
+if (isTouch) el.html.dataset.touch = 'on';
 
 const speaker = $('#speaker');
 if (speaker) speaker.addEventListener('click', (e) => { e.stopPropagation(); SFX.toggle(); });
@@ -631,7 +867,80 @@ addEventListener('keydown', (e) => {
   if ((e.key === 'm' || e.key === 'M') && e.target.tagName !== 'INPUT') SFX.toggle();
 });
 
+/* ---------- til almashtirish / language switching ------------- */
+
+const setText = (sel, v) => { const n = $(sel); if (n) n.textContent = v; };
+const setHtml = (sel, v) => { const n = $(sel); if (n) n.innerHTML = v; };
+const setAria = (sel, v) => { const n = $(sel); if (n) n.setAttribute('aria-label', v); };
+
+/* qurilma ichidagi va sayt chekkasidagi qoʻzgʻalmas yozuvlar */
+function applyStatic() {
+  const u = UI(), a = u.aria;
+
+  el.html.lang = T().htmlLang;
+  document.title = T().docTitle;
+  const md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute('content', T().docDesc);
+
+  setHtml('.off-title', isTouch ? u.offTitleTap : u.offTitle);
+  setText('.off-sub', u.offSub);
+  setText('#keyboardTitle', u.keyboard);
+  setText('#langTitle', u.langTitle);
+  setText('.hint', u.hint);
+  setHtml('#pgFoot', u.backFoot);
+  setHtml('#pgPrev', `<span class="arr">◂</span> ${u.prev}`);
+  setHtml('#pgNext', `${u.next} <span class="arr">▸</span>`);
+  setText('.power .lbl', u.power);
+  setText('.backbtn .lbl', u.back);
+
+  setAria('#speaker', a.sound); setAria('#power', a.power);
+  setAria('#backbtn', a.back);  setAria('#knob', a.open);
+  setAria('#wheel', a.wheel);   setAria('#dWork', a.work);
+  setAria('#dWrite', a.write);  setAria('#dAbout', a.about);
+  setAria('#dContact', a.contact);
+  setAria('#langsel', a.lang);
+  setAria('[data-lang="uz"]', a.langUz);
+  setAria('[data-lang="en"]', a.langEn);
+
+  /* skrin-riderga bitta til yetadi — qidiruv robotlari ikkalasini ham koʻradi */
+  LANGS.forEach(l => { const n = $('#sr-' + l); if (n) n.hidden = l !== LANG; });
+  document.querySelectorAll('.lang').forEach(b =>
+    b.classList.toggle('is-on', b.dataset.lang === LANG));
+}
+
+/* til almashganda ekran qayta chiziladi — ovoz chalinmasin */
+const silently = (fn) => { SFX.mute(true); try { fn(); } finally { SFX.mute(false); } };
+
+function setLang(lang, save = true) {
+  if (!I18N[lang] || lang === LANG) { if (I18N[lang]) applyStatic(); return; }
+  LANG = lang;
+  if (save) store.set('console-lang', lang);
+
+  applyStatic();
+  renderChangelog();
+  renderTabs();
+  renderMenu();
+  legend(S.on ? S.view : 'off');
+
+  /* ochiq turgan ekranni ham darhol yangilaymiz */
+  if (S.on) {
+    if (S.view === 'detail') silently(() => openDetail(S.item));
+    else if (S.view === 'page') silently(() => openPage(S.channel));
+  }
+}
+
+document.querySelectorAll('.lang').forEach(b => {
+  b.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (b.dataset.lang !== LANG) { SFX.tick(); setLang(b.dataset.lang); }
+  });
+});
+
 /* ---------- init --------------------------------------------- */
+LANG = LANGS.includes(store.get('console-lang')) ? store.get('console-lang') : 'uz';
+applyStatic();
+renderChangelog();
+renderTabs();
 legend('off');
 renderMenu();
 markChannel();

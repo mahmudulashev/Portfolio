@@ -83,7 +83,7 @@
 <body>
 
 <!-- Qidiruv tizimlari va skrin-riderlar uchun. Ayni matn qurilma ekranida ham bor. -->
-<div class="sr-only">
+<div class="sr-only" id="sr-uz" lang="uz">
   <h1>Mahmud Ulashev — raqamli dasturchi</h1>
   <p>Fikr tizimga aylanadi. Dizayn, interfeys, server va ular orasidagi ko'rinmas ish —
      siz bitta odam bilan gaplashasiz, butun natijaga bitta odam javob beradi.
@@ -148,10 +148,100 @@
 
 <!-- ambient furniture -->
 
+<div class="sr-only" id="sr-en" lang="en" hidden>
+  <h1>Mahmud Ulashev — digital developer</h1>
+  <p>A thought becomes a system. Design, interface, server and the invisible work between them —
+     you talk to one person, and one person answers for the whole result.
+     The idea is yours; the working product is mine. I have been writing code since 2022.</p>
+
+  <h2>Work</h2>
+
+  <h3>Take-IELTS — an IELTS practice platform</h3>
+  <p>Reading, Listening and Writing in the real exam format: the same timing, the same question
+     types and the same band table. Writing essays go through a Supabase Edge Function to an AI
+     model and are marked against the four official IELTS criteria. Every attempt is stored and
+     band score progress is charted.
+     Technologies: React, Vite, Tailwind CSS, Supabase.
+     <a href="https://take-ielts.vercel.app">take-ielts.vercel.app</a></p>
+
+  <h3>Atlas — a desktop tool for reading an unfamiliar codebase</h3>
+  <p>It analyses a project and answers the three questions a newcomer actually has: what is this,
+     how is it wired, and where do I start. A dependency map, a reading route and findings.
+     One Swift engine drives both clients — SwiftUI on macOS and Avalonia on Windows — and both
+     read a codebase identically.
+     Technologies: Swift, SwiftUI, Avalonia.
+     <a href="https://github.com/mahmudulashev/Atlas">github.com/mahmudulashev/Atlas</a></p>
+
+  <h3>XIV — an online storefront for a fashion label</h3>
+  <p>A storefront built from a Figma design system: a filtered catalogue, a product page with a
+     gallery and colour and size pickers, a shopping bag, and search that returns results as you
+     type. Responsive down to 393px.
+     Technologies: Next.js, React, TypeScript, Tailwind CSS.
+     <a href="https://cloth-store-gules.vercel.app">cloth-store-gules.vercel.app</a></p>
+
+  <h3>Orpheus — a pixel-faithful build of a Figma design</h3>
+  <p>A designer portfolio rebuilt one to one from its Figma source. Type sizes, letter-spacing,
+     section rhythm and the ambient glow colours come from the design itself rather than from
+     eye-balling it. Dark and light themes; the built page lands within a couple of pixels of the
+     1728px artboard.
+     Technologies: Next.js, React, TypeScript, Tailwind CSS, Motion.
+     <a href="https://orpheus-dusky.vercel.app">orpheus-dusky.vercel.app</a></p>
+
+  <h2>Services</h2>
+  <ul>
+    <li><strong>A new site or app.</strong> We start from nothing: the design, the site, an admin panel, payments and the back end that keeps it all running. 6–10 weeks.</li>
+    <li><strong>Automating the work.</strong> Orders, queues and reports move out of notebooks and spreadsheets into a system that runs itself. 2–6 weeks.</li>
+    <li><strong>Rescuing an existing project.</strong> If the previous developer walked away, I read the code, repair the foundation and carry the work through to the finish.</li>
+  </ul>
+
+  <h2>How we work</h2>
+  <ol>
+    <li><strong>We talk first.</strong> You tell me what you need and I ask the questions. Half an hour later the price and the timeline are clear. Free.</li>
+    <li><strong>A first working version.</strong> You do not wait for the whole project. You see the most important part early, ask for changes, and the direction becomes clear.</li>
+    <li><strong>Handover and training.</strong> The code is yours. I show your staff how to run it and support you free of charge for a month.</li>
+  </ol>
+
+  <h2>Contact</h2>
+  <ul>
+    <li>Telegram: <a href="https://t.me/mahmud_ulashev">@mahmud_ulashev</a></li>
+    <li>Phone: <a href="tel:+998770343444">+998 77 034 34 44</a></li>
+    <li>Email: <a href="mailto:mahmud_u@icloud.com">mahmud_u@icloud.com</a></li>
+    <li>GitHub: <a href="https://github.com/mahmudulashev">mahmudulashev</a></li>
+  </ul>
+</div>
+
+<div class="amb amb-tr" id="langbox">
+  <div class="amb-title" id="langTitle">TIL</div>
+  <div class="langsel" id="langsel" role="group" aria-label="Sayt tili">
+    <button class="lang" data-lang="uz" aria-label="Oʻzbekcha">
+      <svg class="flag" viewBox="0 0 60 40" aria-hidden="true">
+        <rect width="60" height="40" fill="#0099b5"/>
+        <rect y="12.4" width="60" height="15.2" fill="#fff"/>
+        <rect y="27.6" width="60" height="12.4" fill="#1eb53a"/>
+        <rect y="11.6" width="60" height="1.5" fill="#ce1126"/>
+        <rect y="26.9" width="60" height="1.5" fill="#ce1126"/>
+        <circle cx="11.5" cy="6.4" r="3.7" fill="#fff"/>
+        <circle cx="13.4" cy="6.4" r="3.7" fill="#0099b5"/>
+      </svg>
+      <span class="lang-code">UZ</span>
+    </button>
+    <button class="lang" data-lang="en" aria-label="English">
+      <svg class="flag" viewBox="0 0 60 40" aria-hidden="true">
+        <rect width="60" height="40" fill="#012169"/>
+        <path d="M0 0 60 40M60 0 0 40" stroke="#fff" stroke-width="8"/>
+        <path d="M0 0 60 40M60 0 0 40" stroke="#c8102e" stroke-width="4"/>
+        <path d="M30 0V40M0 20H60" stroke="#fff" stroke-width="13"/>
+        <path d="M30 0V40M0 20H60" stroke="#c8102e" stroke-width="7.5"/>
+      </svg>
+      <span class="lang-code">EN</span>
+    </button>
+  </div>
+</div>
+
 <div class="amb amb-bl" id="changelog"></div>
 
 <div class="amb amb-r">
-  <div class="amb-title">KLAVIATURA</div>
+  <div class="amb-title" id="keyboardTitle">KLAVIATURA</div>
   <ul class="keylegend" id="keylegend"></ul>
 </div>
 
@@ -190,7 +280,7 @@
             <section class="view view-menu" data-view="menu">
               <div class="shead">
                 <span class="spath" id="menuPath">/ishlar</span>
-                <span class="scount" id="menuCount">8 ta</span>
+                <span class="scount" id="menuCount">4 ta</span>
               </div>
               <nav class="tabs" id="tabs"></nav>
               <div class="listzone" id="listzone">
@@ -199,7 +289,7 @@
               </div>
               <div class="prompt">
                 <span class="pcaret">&gt;</span>
-                <input id="cmd" autocomplete="off" spellcheck="false" placeholder="1–8 raqamini yozing" />
+                <input id="cmd" autocomplete="off" spellcheck="false" placeholder="raqam yozing: 1–4" />
               </div>
             </section>
 
@@ -207,13 +297,13 @@
             <section class="view view-detail" data-view="detail">
               <div class="shead">
                 <span class="crumb" id="crumb"></span>
-                <span class="scount" id="detNo"># 1</span>
+                <span class="scount" id="detNo">№ 1</span>
               </div>
               <div class="dbody" id="dbody"></div>
               <div class="dfoot" id="dfoot">ochish uchun <b>↵</b> yoki <b>markaziy tugma</b> <b class="arr">▸</b></div>
               <div class="pager">
                 <button class="pgbtn" id="pgPrev"><span class="arr">◂</span> oldingi</button>
-                <span class="pgpos" id="pgPos">1 / 8</span>
+                <span class="pgpos" id="pgPos">1 / 4</span>
                 <button class="pgbtn" id="pgNext">keyingi <span class="arr">▸</span></button>
               </div>
             </section>

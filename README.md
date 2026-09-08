@@ -6,7 +6,7 @@ no dependencies — three files and the platform.
 
 **Live:** [www.ulashev.uz](https://www.ulashev.uz) · **O'zbekcha README:** [README.uz.md](README.uz.md)
 
-![The device on the works channel](docs/hero.webp)
+![The device on the work channel](docs/en/hero.webp)
 
 ---
 
@@ -52,13 +52,19 @@ objects that the screen renders, and once as ordinary semantic HTML in a visuall
 block. Screen readers and crawlers get headings, paragraphs and links — not an inert
 canvas.
 
+**Two languages, one page.** Uzbek and English live side by side in a single `I18N` object —
+copy, key legends, section labels, `<title>`, the meta description and the hidden accessible
+block. Switching re-renders whatever is on screen without losing your place, and the choice is
+remembered. The switcher sits on the page furniture rather than on the device: top right on a
+desktop, and a compact pill in the top bar on a phone, where the furniture has nowhere to live.
+
 **Details.** JSON-LD structured data, Open Graph and Twitter cards, sitemap, PWA manifest,
 `prefers-reduced-motion` honoured throughout, and `localStorage` access wrapped so private
 mode cannot throw.
 
 | Project detail | About | Contact form |
 |---|---|---|
-| ![](docs/detail.webp) | ![](docs/about.webp) | ![](docs/write.webp) |
+| ![](docs/en/detail.webp) | ![](docs/en/about.webp) | ![](docs/en/write.webp) |
 
 ## Running it
 
@@ -75,14 +81,16 @@ Then open `http://localhost:4173`.
 All copy lives at the top of [`app.js`](app.js) in two objects, deliberately kept apart
 from the interaction code:
 
-- `DATA` — the three channels of the menu (`work`, `services`, `process`) and their items
-- `PAGES` — the standalone pages (`about`, `write`, `contact`)
+- `I18N.uz` and `I18N.en` — every string the site can show, one branch per language
+- inside each: `data` (the `work`, `services` and `process` channels), `pages` (`about`,
+  `write`, `contact`), `changelog`, `legends` and the `ui` labels
 
-Adding a project means adding one object to `DATA.work.items`. Nothing else needs to
-change: counts, pagination, the numbered list and the keyboard prompt all read from it.
+Adding a project means adding one object to `data.work.items` **in both languages**. Nothing
+else needs to change: counts, pagination, the numbered list and the keyboard prompt all read
+from it.
 
-When you change the copy, mirror it in the hidden block in [`index.html`](index.html) so
-the accessible version stays in step.
+When you change the copy, mirror it in the two hidden blocks in [`index.html`](index.html)
+(`#sr-uz` and `#sr-en`) so the accessible version stays in step.
 
 ## Credits
 
