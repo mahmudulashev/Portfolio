@@ -177,7 +177,7 @@ uz: {
       </ul>
       <div class="d-actions">
         <a class="d-open" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">Telegram →</a>
-        <a class="d-open" href="mailto:mahmud_u@icloud.com">Email →</a>
+        <a class="d-open" href="mailto:mahmud@ulashev.com">Email →</a>
       </div>`
     },
     contact: {
@@ -188,7 +188,7 @@ uz: {
       <div class="d-para">Telegramda qisqacha yozing: nima kerak, hozir qayerdasiz va qachongacha kerak.</div>
       <div class="d-role"><b>telegram</b><a class="d-a" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">@mahmud_ulashev</a></div>
       <div class="d-role"><b>telefon</b><a class="d-a" href="tel:+998770343444">+998 77 034 34 44</a></div>
-      <div class="d-role"><b>pochta</b><a class="d-a" href="mailto:mahmud_u@icloud.com">mahmud_u@icloud.com</a></div>
+      <div class="d-role"><b>pochta</b><a class="d-a" href="mailto:mahmud@ulashev.com">mahmud@ulashev.com</a></div>
       <div class="d-role"><b>github</b><a class="d-a" href="https://github.com/mahmudulashev" target="_blank" rel="noopener">mahmudulashev</a></div>
       <div class="d-role"><b>sayt</b>ulashev.uz</div>`
     }
@@ -354,7 +354,7 @@ en: {
       </ul>
       <div class="d-actions">
         <a class="d-open" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">Telegram →</a>
-        <a class="d-open" href="mailto:mahmud_u@icloud.com">Email →</a>
+        <a class="d-open" href="mailto:mahmud@ulashev.com">Email →</a>
       </div>`
     },
     contact: {
@@ -365,7 +365,7 @@ en: {
       <div class="d-para">Write briefly on Telegram: what you need, where you are now and by when.</div>
       <div class="d-role"><b>telegram</b><a class="d-a" href="https://t.me/mahmud_ulashev" target="_blank" rel="noopener">@mahmud_ulashev</a></div>
       <div class="d-role"><b>phone</b><a class="d-a" href="tel:+998770343444">+998 77 034 34 44</a></div>
-      <div class="d-role"><b>email</b><a class="d-a" href="mailto:mahmud_u@icloud.com">mahmud_u@icloud.com</a></div>
+      <div class="d-role"><b>email</b><a class="d-a" href="mailto:mahmud@ulashev.com">mahmud@ulashev.com</a></div>
       <div class="d-role"><b>github</b><a class="d-a" href="https://github.com/mahmudulashev" target="_blank" rel="noopener">mahmudulashev</a></div>
       <div class="d-role"><b>site</b>ulashev.uz</div>`
     }
