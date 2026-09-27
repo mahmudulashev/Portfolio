@@ -90,7 +90,7 @@ uz: {
           body: 'IELTS va SAT tayyorgarligi uchun kunni bloklarga boʼlib rejalash, aslida nima qilinganini belgilash, har xatoni yozib borish va raqamlar oʼzgarishini kuzatish. Hamma narsa Macʼda qoladi: akkaunt ham, server ham yoʼq.',
           note: 'Natija: raw ball bandga oʼzi aylanadi, ball qoidalari unit testlar bilan himoyalangan.',
           tags: '#Swift #SwiftUI #SwiftData #SwiftCharts',
-          link: 'https://github.com/mahmudulashev/PrepPlanner' },
+          link: 'https://prepplanner.vercel.app' },
 
         { t: 'XIV', y: '2026', f: '◉', cat: 'E-COMMERCE · DOʼKON',
           role: 'Figma dizayn tizimidan toʼliq frontend',
@@ -275,7 +275,7 @@ en: {
           body: 'IELTS and SAT preparation on one timeline: plan the day in blocks, mark what you actually did, log every mistake and watch the numbers move. Everything stays on your Mac — no accounts, no backend.',
           note: 'Result: raw scores turn into bands automatically, and the scoring rules are covered by unit tests.',
           tags: '#Swift #SwiftUI #SwiftData #SwiftCharts',
-          link: 'https://github.com/mahmudulashev/PrepPlanner' },
+          link: 'https://prepplanner.vercel.app' },
 
         { t: 'XIV', y: '2026', f: '◉', cat: 'E-COMMERCE · STOREFRONT',
           role: 'Whole frontend from a Figma design system',
