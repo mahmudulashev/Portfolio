@@ -83,7 +83,7 @@ uz: {
           body: 'Muharrir fayllarni koʼrsatadi, kod esa graf boʼlib ishlaydi — Atlas oʼsha grafni chizadi: bogʼliqliklar xaritasi, oʼqish marshruti va topilmalar. Bitta Swift dvigateli ikkala platformada.',
           note: 'Natija: ikki platforma kodni bir xil oʼqiydi, farq chiqsa CI yiqiladi.',
           tags: '#Swift #SwiftUI #Avalonia',
-          link: 'https://github.com/mahmudulashev/Atlas' },
+          link: 'https://atlas-codemap.vercel.app' },
 
         { t: 'PrepPlanner', y: '2026', f: '◉', cat: 'TAʼLIM · DESKTOP',
           role: 'Native macOS ilova: rejalashtiruvchi, odatlar, analitika',
@@ -268,7 +268,7 @@ en: {
           body: 'Your editor shows files, but code runs as a graph — Atlas draws that graph: a dependency map, a reading route and findings. One Swift engine behind both platforms.',
           note: 'Result: both platforms read a codebase identically, and CI fails if they diverge.',
           tags: '#Swift #SwiftUI #Avalonia',
-          link: 'https://github.com/mahmudulashev/Atlas' },
+          link: 'https://atlas-codemap.vercel.app' },
 
         { t: 'PrepPlanner', y: '2026', f: '◉', cat: 'EDUCATION · DESKTOP',
           role: 'Native macOS app: planner, habits, analytics',
