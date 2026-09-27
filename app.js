@@ -83,7 +83,7 @@ uz: {
           body: 'Digital SAT haqiqiy imtihon interfeysida: modullar, vaqt, kalkulyator, highlighter va javoblarni belgilash. Imtihon toʼliq ekranda himoyalangan, toʼgʼri javoblar brauzerga umuman yetib bormaydi.',
           note: 'Natija: 400–1600 shkalada ball, boʼlimlar tahlili va har savol boʼyicha izoh.',
           tags: '#Next.js #TypeScript #Supabase #Postgres',
-          link: 'https://sat-prep-drab-ten.vercel.app' },
+          link: 'https://satify-uz.vercel.app' },
 
         { t: 'Atlas', y: '2026', f: '◉', cat: 'DASTURCHI ASBOBI · DESKTOP',
           role: 'Swift dvigatel, macOS va Windows klientlari',
@@ -276,7 +276,7 @@ en: {
           body: 'The digital SAT in an interface modelled on the real exam: modules, timers, calculator, highlighter and mark for review. The exam runs locked in full screen, and answer keys never reach the browser.',
           note: 'Result: scaled 400–1600 scores, a domain breakdown and an explanation for every question.',
           tags: '#Next.js #TypeScript #Supabase #Postgres',
-          link: 'https://sat-prep-drab-ten.vercel.app' },
+          link: 'https://satify-uz.vercel.app' },
 
         { t: 'Atlas', y: '2026', f: '◉', cat: 'DEVELOPER TOOL · DESKTOP',
           role: 'Swift engine, macOS and Windows clients',
