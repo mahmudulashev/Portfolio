@@ -85,6 +85,13 @@ uz: {
           tags: '#Swift #SwiftUI #Avalonia',
           link: 'https://github.com/mahmudulashev/Atlas' },
 
+        { t: 'PrepPlanner', y: '2026', f: '◉', cat: 'TAʼLIM · DESKTOP',
+          role: 'Native macOS ilova: rejalashtiruvchi, odatlar, analitika',
+          body: 'IELTS va SAT tayyorgarligi uchun kunni bloklarga boʼlib rejalash, aslida nima qilinganini belgilash, har xatoni yozib borish va raqamlar oʼzgarishini kuzatish. Hamma narsa Macʼda qoladi: akkaunt ham, server ham yoʼq.',
+          note: 'Natija: raw ball bandga oʼzi aylanadi, ball qoidalari unit testlar bilan himoyalangan.',
+          tags: '#Swift #SwiftUI #SwiftData #SwiftCharts',
+          link: 'https://github.com/mahmudulashev/PrepPlanner' },
+
         { t: 'XIV', y: '2026', f: '◉', cat: 'E-COMMERCE · DOʼKON',
           role: 'Figma dizayn tizimidan toʼliq frontend',
           body: 'Moda doʼkoni: filtrlar bilan katalog, galereya hamda rang va oʼlcham tanlovi bor mahsulot sahifasi, savat va jonli qidiruv. 393px gacha moslashadi.',
@@ -155,7 +162,7 @@ uz: {
       <div class="d-para">Gʻoya sizdan — ishlaydigan mahsulot mendan.</div>
       <div class="d-sub">RAQAMLARDA</div>
       <div class="d-role"><b>4</b>yil tajriba · 2022-yildan beri</div>
-      <div class="d-role"><b>4</b>ochiq loyiha</div>
+      <div class="d-role"><b>5</b>ochiq loyiha</div>
       <div class="d-role"><b>3</b>IELTS boʻlimi take-ielts’da</div>
       <div class="d-role"><b>2</b>platforma atlas’da</div>
       <div class="d-sub">HOZIR</div>
@@ -195,6 +202,7 @@ uz: {
   },
 
   changelog: [
+    { d: '2026', lines: ['· prepplanner macOS uchun chiqdi'] },
     { d: '2026', lines: ['· atlas macOS va Windows uchun chiqdi'] },
     { d: '2026', lines: ['· take-ielts writing AI baholash'] },
     { d: '2026', lines: ['· xiv va orpheus ishga tushdi'] }
@@ -261,6 +269,13 @@ en: {
           note: 'Result: both platforms read a codebase identically, and CI fails if they diverge.',
           tags: '#Swift #SwiftUI #Avalonia',
           link: 'https://github.com/mahmudulashev/Atlas' },
+
+        { t: 'PrepPlanner', y: '2026', f: '◉', cat: 'EDUCATION · DESKTOP',
+          role: 'Native macOS app: planner, habits, analytics',
+          body: 'IELTS and SAT preparation on one timeline: plan the day in blocks, mark what you actually did, log every mistake and watch the numbers move. Everything stays on your Mac — no accounts, no backend.',
+          note: 'Result: raw scores turn into bands automatically, and the scoring rules are covered by unit tests.',
+          tags: '#Swift #SwiftUI #SwiftData #SwiftCharts',
+          link: 'https://github.com/mahmudulashev/PrepPlanner' },
 
         { t: 'XIV', y: '2026', f: '◉', cat: 'E-COMMERCE · STOREFRONT',
           role: 'Whole frontend from a Figma design system',
@@ -332,7 +347,7 @@ en: {
       <div class="d-para">The idea is yours — the working product is mine.</div>
       <div class="d-sub">IN NUMBERS</div>
       <div class="d-role"><b>4</b>years of experience · since 2022</div>
-      <div class="d-role"><b>4</b>open-source projects</div>
+      <div class="d-role"><b>5</b>open-source projects</div>
       <div class="d-role"><b>3</b>IELTS sections in take-ielts</div>
       <div class="d-role"><b>2</b>platforms in atlas</div>
       <div class="d-sub">RIGHT NOW</div>
@@ -372,6 +387,7 @@ en: {
   },
 
   changelog: [
+    { d: '2026', lines: ['· prepplanner released for macOS'] },
     { d: '2026', lines: ['· atlas released for macOS and Windows'] },
     { d: '2026', lines: ['· take-ielts writing marked by AI'] },
     { d: '2026', lines: ['· xiv and orpheus went live'] }
