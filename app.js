@@ -78,6 +78,13 @@ uz: {
           tags: '#React #Vite #Supabase #AI',
           link: 'https://take-ielts.vercel.app' },
 
+        { t: 'Satify', y: '2026', f: '◉', cat: 'TAʼLIM · PLATFORMA',
+          role: 'Toʼliq mahsulot: imtihon interfeysi, himoya, server tomonda baholash',
+          body: 'Digital SAT haqiqiy imtihon interfeysida: modullar, vaqt, kalkulyator, highlighter va javoblarni belgilash. Imtihon toʼliq ekranda himoyalangan, toʼgʼri javoblar brauzerga umuman yetib bormaydi.',
+          note: 'Natija: 400–1600 shkalada ball, boʼlimlar tahlili va har savol boʼyicha izoh.',
+          tags: '#Next.js #TypeScript #Supabase #Postgres',
+          link: 'https://sat-prep-drab-ten.vercel.app' },
+
         { t: 'Atlas', y: '2026', f: '◉', cat: 'DASTURCHI ASBOBI · DESKTOP',
           role: 'Swift dvigatel, macOS va Windows klientlari',
           body: 'Muharrir fayllarni koʼrsatadi, kod esa graf boʼlib ishlaydi — Atlas oʼsha grafni chizadi: bogʼliqliklar xaritasi, oʼqish marshruti va topilmalar. Bitta Swift dvigateli ikkala platformada.',
@@ -162,7 +169,7 @@ uz: {
       <div class="d-para">Gʻoya sizdan — ishlaydigan mahsulot mendan.</div>
       <div class="d-sub">RAQAMLARDA</div>
       <div class="d-role"><b>4</b>yil tajriba · 2022-yildan beri</div>
-      <div class="d-role"><b>5</b>ochiq loyiha</div>
+      <div class="d-role"><b>6</b>ochiq loyiha</div>
       <div class="d-role"><b>3</b>IELTS boʻlimi take-ielts’da</div>
       <div class="d-role"><b>2</b>platforma atlas’da</div>
       <div class="d-sub">HOZIR</div>
@@ -202,6 +209,7 @@ uz: {
   },
 
   changelog: [
+    { d: '2026', lines: ['· satify ishga tushdi'] },
     { d: '2026', lines: ['· prepplanner macOS uchun chiqdi'] },
     { d: '2026', lines: ['· atlas macOS va Windows uchun chiqdi'] },
     { d: '2026', lines: ['· take-ielts writing AI baholash'] },
@@ -262,6 +270,13 @@ en: {
           note: 'Result: every attempt is stored and band score progress is charted.',
           tags: '#React #Vite #Supabase #AI',
           link: 'https://take-ielts.vercel.app' },
+
+        { t: 'Satify', y: '2026', f: '◉', cat: 'EDUCATION · PLATFORM',
+          role: 'Whole product: exam interface, lockdown, server-side scoring',
+          body: 'The digital SAT in an interface modelled on the real exam: modules, timers, calculator, highlighter and mark for review. The exam runs locked in full screen, and answer keys never reach the browser.',
+          note: 'Result: scaled 400–1600 scores, a domain breakdown and an explanation for every question.',
+          tags: '#Next.js #TypeScript #Supabase #Postgres',
+          link: 'https://sat-prep-drab-ten.vercel.app' },
 
         { t: 'Atlas', y: '2026', f: '◉', cat: 'DEVELOPER TOOL · DESKTOP',
           role: 'Swift engine, macOS and Windows clients',
@@ -347,7 +362,7 @@ en: {
       <div class="d-para">The idea is yours — the working product is mine.</div>
       <div class="d-sub">IN NUMBERS</div>
       <div class="d-role"><b>4</b>years of experience · since 2022</div>
-      <div class="d-role"><b>5</b>open-source projects</div>
+      <div class="d-role"><b>6</b>open-source projects</div>
       <div class="d-role"><b>3</b>IELTS sections in take-ielts</div>
       <div class="d-role"><b>2</b>platforms in atlas</div>
       <div class="d-sub">RIGHT NOW</div>
@@ -387,6 +402,7 @@ en: {
   },
 
   changelog: [
+    { d: '2026', lines: ['· satify went live'] },
     { d: '2026', lines: ['· prepplanner released for macOS'] },
     { d: '2026', lines: ['· atlas released for macOS and Windows'] },
     { d: '2026', lines: ['· take-ielts writing marked by AI'] },
